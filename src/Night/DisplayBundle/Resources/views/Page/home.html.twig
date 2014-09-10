@@ -1,0 +1,15 @@
+{% extends 'NightDisplayBundle::layout.html.twig' %}
+
+{% block javascriptLibs %}
+    {{ parent() }}
+
+    {% javascripts
+        '@NightDisplayBundle/Resources/public/js/lib/svgPathDraw.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block content %}
+    {% include 'NightDisplayBundle:Page:home_content.html.twig' %}
+{% endblock %}

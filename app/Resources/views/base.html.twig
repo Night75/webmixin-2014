@@ -3,8 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block head %}{% endblock %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="/components/normalize-css/normalize.css" />
+        {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block javascriptLibs %}{% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}

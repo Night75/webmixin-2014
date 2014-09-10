@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block javascriptLibs %}
+    {{ parent() }}
+    <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/components/Snap.svg/dist/snap.svg-min.js"></script>
+
+    {% javascripts
+        '@NightDisplayBundle/Resources/public/js/lib/classie.js'
+        '@NightDisplayBundle/Resources/public/js/lib/svgLoader.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets
+        '@NightDisplayBundle/Resources/public/less/main.less'
+        filter="cssrewrite"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    {% include 'NightDisplayBundle:Page:loading.html.twig' %}
+
+    {{ render_esi(controller('NightDisplayBundle:Layout:header')) }}
+
+    {% block content %}
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function() {
+
+            // ====
+            var loader = new SVGLoader( document.getElementById( 'loading-overlay' ), { speedIn : 400, easingIn : mina.easeinout } );
+
+            function hidePageLoader() {
+                $('.wrapper-logo, .wrapper-loader').fadeOut(200);
+                loader.hide();
+            }
+
+            setTimeout(function() {
+                hidePageLoader();
+            }, 3000);
+        });
+    </script>
+{% endblock %}

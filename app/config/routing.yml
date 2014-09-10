@@ -1,0 +1,3 @@
+night_display:
+    resource: "@NightDisplayBundle/Controller"
+    type: annotation

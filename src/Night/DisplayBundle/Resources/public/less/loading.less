@@ -1,49 +1,56 @@
-#loading-mask {
+#loading-overlay {
     top: 0;
     height: 100%;
     width: 100%;
-    background: white;
     min-height: 480px;
     position: fixed;
     z-index: 9999;
-}
+    visibility: hidden;
 
-.wrapper-logo,
-.wrapper-loader {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    3        cursor: default;
-    pointer-events: none;
-    text-align: center;
-}
+    &.show { visibility: visible; }
 
-.wrapper-logo {
-    top: 0;
-    height: 100%;
-    transform: translate3d(0,20%,0);
-}
+    svg {
+        position: absolute;
+        top: 0;
+        left: 0;
 
-.wrapper-loader {
-    bottom: 20%;
-}
+        path {
+            fill: @color-light-bg;
+        }
+    }
 
-.wrapper-logo img {
-    min-width: 320px;
-    max-width: 480px;
-    width: 20%;
-}
+    .wrapper-logo,
+    .wrapper-loader {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        cursor: default;
+        pointer-events: none;
+        text-align: center;
+    }
 
-.wrapper-logo,
-.wrapper-loader {
-    opacity: 1;
-    -webkit-animation: loaderIntro 1s cubic-bezier(0.7,0,0.3,1) both;
-    animation: loaderIntro 1s cubic-bezier(0.7,0,0.3,1) both;
-}
+    .wrapper-logo {
+        top: 0;
+        height: 100%;
+    }
 
-.wrapper-loader {
-    -webkit-animation-delay: 0.2s;
-    animation-delay: 0.2s;
+    .wrapper-logo img {
+        min-width: 320px;
+        max-width: 480px;
+        width: 20%;
+    }
+
+    .wrapper-logo,
+    .wrapper-loader {
+        opacity: 1;
+        -webkit-animation: loaderIntro 1s cubic-bezier(0.7,0,0.3,1) both;
+        animation: loaderIntro 1s cubic-bezier(0.7,0,0.3,1) both;
+    }
+
+    .wrapper-loader {
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
 }
 
 @-webkit-keyframes loaderIntro {
@@ -52,4 +59,14 @@
 
 @keyframes loaderIntro {
     from { opacity: 0; -webkit-transform: translate3d(0,800px,0); transform: translate3d(0,800px,0); }
+}
+
+@media screen and (max-height: 700px) {
+    .wrapper-logo { transform: translate3d(0,15%,0); }
+    .wrapper-loader { bottom: 15%; }
+}
+
+@media screen and (min-height: 700px) {
+    .wrapper-logo { transform: translate3d(0,20%,0); }
+    .wrapper-loader { bottom: 20%; }
 }

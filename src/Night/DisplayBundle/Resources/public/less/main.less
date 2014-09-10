@@ -1,0 +1,63 @@
+// Core variables and mixins
+@import "fonts.less";
+@import "variables.less";
+@import "vendor-prefixes.less";
+@import "mixins.less";
+
+// Common/General styles
+@import "common.less";
+// Page
+@import "loading.less";
+@import "home.less";
+
+section#home, section#home .container {
+    width: 100%;
+    height: 100%;
+}
+
+section#home{
+    background: @color-dark-bg;
+    display: table;
+
+    .container {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    h1 {
+        margin: 0;
+        text-align: center;
+    }
+
+    h1, span {
+        font-family: "Times New Roman", Times, serif;
+        color: white;
+        font-weight: normal;
+        font-style: italic;
+        display: block;
+    }
+
+    h1, span {
+        font-size: 55px;
+    }
+
+    .widget {
+        text-align: center;
+    }
+}
+
+section#home {
+
+    h1 span {
+        height: 70px;
+        line-height: 70px;
+    }
+
+    .widget {
+
+        svg {
+            height: 245px;
+            margin-left: -545px;
+        }
+    }
+}

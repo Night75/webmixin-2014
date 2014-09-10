@@ -1,1 +1,5 @@
-{{ knp_menu_render('AcmeDemoBundle:Builder:headMenu') }}
+<header>
+    <nav>
+        {{ knp_menu_render('NightDisplayBundle:Builder:headMenu', {'allow_‌​safe_labels': true})|raw }}
+    </nav>
+</header>
