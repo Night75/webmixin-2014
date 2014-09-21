@@ -1,0 +1,126 @@
+<section id="skills" class="page">
+
+    <div class="container fluid">
+        <h1>Skills</h1>
+
+        <section id="languages">
+
+            <div class="content">
+                <h2>Languages</h2>
+
+                {{ _self.skillbar('PHP 5.5', '85', 'server') }}
+                {{ _self.skillbar('Javascript', '80', 'script') }}
+                {{ _self.skillbar('HTML 5', '75', 'core') }}
+                {{ _self.skillbar('CSS 3', '75', 'design') }}
+                {{ _self.skillbar('NodeJS', '60', 'server-2') }}
+            </div>
+        </section>
+
+        <div class="decoration-middle">
+            <div class="decoration"></div>
+            <div class="decoration"></div>
+        </div>
+
+        <section id="frameworks">
+
+            <div class="content">
+                <h2>Frameworks</h2>
+
+                {{ _self.skillbar('Symfony 2', '80', 'server') }}
+                {{ _self.skillbar('jQuery', '80', 'script') }}
+                {{ _self.skillbar('Express', '50', 'server-2') }}
+            </div>
+        </section>
+
+        <div class="decoration-separator">
+            <div class="decoration"></div>
+            <div class="decoration"></div>
+            <div class="decoration"></div>
+        </div>
+
+        <section id="others">
+            <h2>Others</h2>
+
+            <div id="other-skills" class="content tt-grid-wrapper">
+                <ul class="tt-grid tt-stacking-inversed tt-effect-fallrotate tt-effect-delay-reversed">
+                    {# Skill bars inserted through javascript #}
+                </ul>
+            </div>
+
+            <div id="certifications" >
+                <div class="download-resume">
+                    <a href=""><span>Download my resume</span></a>
+                </div>
+
+                <div class="certification">
+                    <a href="">
+                        <img src="{{ asset('bundles/nightdisplay/images/certifications/ciw_sda.png')}}" alt="CIW SDA" title="CIW - Site Development Associate" />
+                        <span>CIW - Site Development Associate</span>
+                    </a>
+                </div>
+                <div class="certification">
+                    <a href="">
+                        <img src="{{ asset('bundles/nightdisplay/images/certifications/ciw_js.png')}}" alt="CIW JS" title="CIW - Javascript Specialist" />
+                    </a>
+                </div>
+                <div class="certification">
+                    <a href="">
+                        <img src="{{ asset('bundles/nightdisplay/images/certifications/zend_php53.png')}}" alt="Zend PHP5.5" title="Zend Certified Engineer PHP 5.3" />
+                    </a>
+                </div>
+                <div class="certification">
+                    <a href="">
+                        <img src="{{ asset('bundles/nightdisplay/images/certifications/oracle_mysql.png')}}" alt="CIW SDA" title="ORACLE - Certified Associate - MySQL" />
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</section>
+
+<script>
+
+    //
+    // ============ Thumbs grid
+    // ________________________________________________________________
+    var items = [],
+        pageItems = [],
+        item;
+
+    {% for skill in skills %}
+        item = '{{ _self.skillitem(skill[1], skill[0]) }}';
+        pageItems.push(item);
+
+        {% if loop.index % 7 == 0 %}
+            items.push(pageItems);
+            pageItems = [];
+        {% endif %}
+    {% endfor %}
+
+    if (pageItems.length > 0) {
+        items.push(pageItems);
+    }
+
+    $('.tt-grid').thumbsGrid({items: items }, true);
+
+</script>
+
+{% macro skillbar(name, rating, colorClass) %}
+    <div class="skillbar {{ colorClass }}" data-percent="{{rating}}%">
+        <div class="skillbar-title"><span>{{name}}</span></div>
+        <div class="skillbar-bar"></div>
+        <div class="skill-bar-percent">{{rating}}%</div>
+    </div>
+{% endmacro %}
+
+{% macro skillitem(name, colorClass) %}
+    {% spaceless %}
+        <div class="skill-item {{ colorClass }}">
+            <div class="skillbar-title"><span>{{ name }}</span></div>
+        </div>
+    {% endspaceless  %}
+{% endmacro %}
+
+

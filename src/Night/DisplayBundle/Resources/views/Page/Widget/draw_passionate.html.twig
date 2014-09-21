@@ -76,9 +76,13 @@ M109.2, 95.1 121.9, 94.5" />
             {cssSelector: '#letter-e', duration: '0.2s'}
         ];
 
-        $('svg').svgPathDraw({
+        $('#and-passionate').svgPathDraw({
             items: items
-        }, true);
+        });
+
+        setTimeout(function() {
+            $('#and-passionate').svgPathDraw('draw');
+        }, 5000);
 
         $('#draw').click(function () {
             $('svg').svgPathDraw('draw');

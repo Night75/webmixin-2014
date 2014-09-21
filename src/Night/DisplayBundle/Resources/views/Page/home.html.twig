@@ -11,5 +11,31 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'NightDisplayBundle:Page:home_content.html.twig' %}
+
+    <section class="page" id="home">
+        <div class="bg-rocket first"></div>
+        <div class="bg-rocket second"></div>
+
+        <div class="container">
+            <h1>
+                <span class="my-name" >Hi I'm Jean-François,</span>
+                <span class="my-job"> I am a Web Developper</span>
+            </h1>
+
+            <p class="widget">
+                {% include 'NightDisplayBundle:Page/Widget:draw_passionate.html.twig' %}
+            </p>
+        </div>
+    </section>
+
+    {{ render(controller('NightDisplayBundle:Page:skills')) }}
+
+    {{ render(controller('NightDisplayBundle:Page:projects')) }}
+
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+

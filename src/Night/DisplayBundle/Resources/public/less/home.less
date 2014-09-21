@@ -1,4 +1,91 @@
-section#home{
-    height: 100%;
+section#home, section#home .container {
     width: 100%;
+    height: 800px;
+}
+
+section#home{
+    position: relative;
+    overflow: hidden;
+    background: @color-dark-bg;
+    display: table;
+
+    .container {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    h1 {
+        margin: 0;
+        text-align: center;
+        text-transform: none;
+    }
+
+    h1, span {
+        font-family: "Times New Roman", Times, serif;
+        color: white;
+        font-weight: normal;
+        font-style: italic;
+        display: block;
+    }
+
+    h1, span {
+        font-size: 55px;
+    }
+
+    .widget {
+        text-align: center;
+    }
+}
+
+// Rockets background
+// ______
+.bg-rocket{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-image: url('@{path-images}abstract_rocket.svg');
+    background-position: center center;
+    background-repeat: repeat-y;
+}
+.bg-rocket.first {
+    .animation(animatedRocketsOne 40s linear infinite);
+}
+.bg-rocket.second {
+    .animation(animatedRocketsTwo 40s linear infinite);
+}
+@keyframes animatedRocketsOne {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(40%, -100%, 0); }
+}
+@-webkit-keyframes animatedRocketsOne {
+    from { -webkit-transform: translate3d(0, 0, 0); }
+    to { -webkit-transform: translate3d(40%, -100%, 0); }
+}
+@keyframes animatedRocketsTwo {
+    from { transform: translate3d(-40%, 100%, 0); }
+    to { transform: translate3d(0, 0, 0);}
+}
+@-webkit-keyframes animatedRocketsTwo {
+    from { -webkit-transform: translate3d(-40%, 100%, 0); }
+    to { -webkit-transform: translate3d(0, 0, 0); }
+}
+
+// Screen dependant style
+// ______
+section#home {
+
+    h1 span {
+        height: 70px;
+        line-height: 70px;
+    }
+
+    .widget {
+
+        svg {
+            height: 245px;
+            margin-left: -545px;
+        }
+    }
 }

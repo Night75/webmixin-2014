@@ -1,0 +1,150 @@
+//
+// Skill bar - items
+// --------------------------------------------------
+
+// Common
+// ______
+
+.skillbar, .skill-item {
+    border-radius: 3px;
+}
+
+.skillbar-title span, .skill-bar-percent{
+    font-family: 'Open Sans', 'sans-serif';
+}
+
+.skillbar-title {
+    span {
+        display:block;
+        background:rgba(0, 0, 0, 0.1);
+        padding:0 20px;
+        height:35px;
+        line-height:35px;
+        font-weight:bold;
+        font-size:13px;
+        color: white;
+    }
+}
+
+// Bar
+// ______
+
+.skill-item {
+    background: grey;
+    display: inline-block;
+}
+
+// Bar
+// ______
+.skillbar {
+    position:relative;
+    display:block;
+    margin-bottom:15px;
+    width:100%;
+    background:#eee;
+    height:35px;
+    .transition(all 0.4s linear);
+
+    .skillbar-bar {
+        height:35px;
+        width:0px;
+        border-radius:3px;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        background: grey;
+        .transition(all 1s linear);
+    }
+
+    .skillbar-title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-border-top-left-radius:3px;
+        -webkit-border-bottom-left-radius:4px;
+        -moz-border-radius-topleft:3px;
+        -moz-border-radius-bottomleft:3px;
+        border-top-left-radius:3px;
+        border-bottom-left-radius:3px;
+
+        span {
+            -webkit-border-top-left-radius:3px;
+            -webkit-border-bottom-left-radius:3px;
+            -moz-border-radius-topleft:3px;
+            -moz-border-radius-bottomleft:3px;
+            border-top-left-radius:3px;
+            border-bottom-left-radius:3px;
+        }
+    }
+
+    .skill-bar-percent {
+        position:absolute;
+        left: 0;
+        top: 0;
+        margin-left: 35px;
+        text-align: right;
+        font-size: 13px;
+        height: 35px;
+        line-height: 35px;
+        color:#444;
+        color:rgba(0, 0, 0, 0.4);
+    }
+}
+
+
+// Item
+// ______
+
+// Colors
+// ______
+@color-green-skillbar: rgb(136, 205, 42);
+@color-blue-skillbar: rgb(75, 170, 233);
+@color-marine-skillbar: rgb(94, 107, 156);
+@color-purple-skillbar: rgb(162, 126, 209);
+@color-red-skillbar: rgb(209, 126, 136);
+@color-orange-skillbar: rgb(250, 192, 13);
+@color-turquoise-skillbar: rgb(63, 183, 178);
+
+.skillbar {
+    &.core .skillbar-bar{background: @color-green-skillbar; }
+    &.server .skillbar-bar{background: @color-blue-skillbar; }
+    &.design .skillbar-bar{background: @color-purple-skillbar; }
+    &.script .skillbar-bar{background: @color-red-skillbar; }
+    &.server-2 .skillbar-bar{background: @color-orange-skillbar; }
+    &.database .skillbar-bar{background: @color-turquoise-skillbar; }
+    &.utility .skillbar-bar{background: @color-marine-skillbar; }
+}
+
+.skill-item {
+    &.core {background: @color-green-skillbar; }
+    &.server {background: @color-blue-skillbar; }
+    &.design {background: @color-purple-skillbar; }
+    &.script {background: @color-red-skillbar; }
+    &.server-2 {background: @color-orange-skillbar; }
+    &.database {background: @color-turquoise-skillbar }
+    &.utility {background: @color-marine-skillbar; }
+}
+
+
+.tt-grid-wrapper {
+    .tt-grid {
+        margin: 0;
+        max-width: none;
+
+        li a {
+            background: none;
+        }
+
+        li, a > div {
+            width: 100px;
+        }
+
+        li {
+            height: 35px;
+            margin: 15px;
+        }
+    }
+
+    .tt-nav-dots {
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,59 @@
+//
+// Losange button
+// --------------------------------------------------
+
+// Main
+// ______
+.bt-square45(@width; @color) {
+    display: inline-block;
+    width: @width;
+    height: @width;
+    background: @color;
+    position: relative;
+    .transform(rotate(45deg));
+
+    >a, >a span {
+        width: 100%;
+        height: 100%;
+    }
+
+    >a {
+        display: table;
+        z-index: 5;
+        position: relative;
+
+        span {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            color: white;
+            .transform(rotate(-45deg));
+        }
+    }
+}
+
+// Hover effects
+// ______
+
+// Diagonal fill
+.d-fill{
+    .transition(all 0.3s);
+
+    &:after {
+        content: '';
+        display: inline-block;
+        background: #000;
+        width: 0%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        .transition(all 0.3s);
+        .transform(translate3d(-50%, -50%, 0));
+    }
+
+    &:hover:after {
+        width: 100%;
+    }
+}

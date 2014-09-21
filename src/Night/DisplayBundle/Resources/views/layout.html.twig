@@ -1,55 +1,103 @@
-{% extends '::base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block head %}{% endblock %}
 
-{% block javascriptLibs %}
-    {{ parent() }}
-    <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="/components/Snap.svg/dist/snap.svg-min.js"></script>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="/components/normalize-css/normalize.css" />
 
-    {% javascripts
-        '@NightDisplayBundle/Resources/public/js/lib/classie.js'
-        '@NightDisplayBundle/Resources/public/js/lib/svgLoader.js'
-    %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-
-    {% stylesheets
-        '@NightDisplayBundle/Resources/public/less/main.less'
-        filter="cssrewrite"
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
-{% endblock %}
-
-{% block body %}
-    {% include 'NightDisplayBundle:Page:loading.html.twig' %}
-
-    {{ render_esi(controller('NightDisplayBundle:Layout:header')) }}
-
-    {% block content %}
+        {% stylesheets
+            '@NightDisplayBundle/Resources/public/less/main.less'
+            filter="cssrewrite"
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
     {% endblock %}
-{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
-    <script>
-        $(document).ready(function() {
+    {% block javascriptLibs %}
+        <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/components/Snap.svg/dist/snap.svg-min.js"></script>
 
-            // ====
-            var loader = new SVGLoader( document.getElementById( 'loading-overlay' ), { speedIn : 400, easingIn : mina.easeinout } );
+        {% javascripts
+            '@NightDisplayBundle/Resources/public/js/lib/classie.js'
+            '@NightDisplayBundle/Resources/public/js/lib/modernizr.custom.js'
+            '@NightDisplayBundle/Resources/public/js/lib/svgLoader.js'
+            '@NightDisplayBundle/Resources/public/js/lib/sideBarEffect.js'
+            '@NightDisplayBundle/Resources/public/js/lib/thumbsGrid.js'
+            '@NightDisplayBundle/Resources/public/js/lib/svgHoverEffect.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+</head>
+<body>
 
-            function hidePageLoader() {
-                $('.wrapper-logo, .wrapper-loader').fadeOut(200);
-                loader.hide();
-            }
+    <div id="container" class="st-container">
 
-            setTimeout(function() {
-                hidePageLoader();
-            }, 3000);
-        });
-    </script>
-{% endblock %}
+    {% block body %}
+        {# ----- Loading widget ------ #}
+        {#{% include 'NightDisplayBundle:Page:loading.html.twig' %}#}
+
+        {# ----- Header ------ #}
+        <header class="st-menu st-effect-11">
+            {{ render_esi(controller('NightDisplayBundle:Layout:header')) }}
+        </header>
+
+        <div id="tools-link">
+            <button id="menu-door" class="st-trigger-effects st-trigger-open" href="#" data-effect="st-effect-11">
+                <img src="{{ asset('bundles/nightdisplay/images/icons/menu9.svg') }}" alt=""/>
+            </button>
+        </div>
+
+        {# ----- Main content ------ #}
+        <div id="main" class="st-pusher">
+            <div class="st-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+        {# ----- Footer ------ #}
+        <footer>
+        </footer>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script>
+            $(document).ready(function() {
+
+                //
+                // ============ Loader
+                // ________________________________________________________________
+
+                /*
+                var loader = new SVGLoader( document.getElementById( 'loading-overlay' ), { speedIn : 400, easingIn : mina.easeinout } );
+
+                function hidePageLoader() {
+                    $('.wrapper-logo, .wrapper-loader').fadeOut(200);
+                    loader.hide();
+                }
+                setTimeout(function() {
+                    hidePageLoader();
+                }, 3000);
+                */
+
+                //
+                // ============ Skill bar
+                // ________________________________________________________________
+
+                $('.skillbar').each(function() {
+                    var $barItems = $(this).find('.skillbar-bar, .skill-bar-percent');
+                    $barItems.width($(this).data('percent'));
+                });
+
+            });
+        </script>
+    {% endblock %}
+    </div>
+</body>
+</html>
