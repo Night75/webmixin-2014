@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Night\DisplayBundle\Entity\Image\ImageItem" inheritance-type="SINGLE_TABLE" table="images_items">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="order" column="image_order"  type="smallint" />
+
+        <many-to-one field="image" target-entity="Night\DisplayBundle\Entity\Image" fetch="EAGER" >
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-column name="image_id" referenced-column-name="id" />
+        </many-to-one>
+
+        <discriminator-column name="item_type" type="string" length="50"  />
+        <discriminator-map>
+            <discriminator-mapping value="project" class="Night\DisplayBundle\Entity\Image\ImageProject" />
+            <discriminator-mapping value="prog_language" class="Night\DisplayBundle\Entity\Image\ImageProgrammationLanguage" />
+        </discriminator-map>
+
+    </entity>
+</doctrine-mapping>

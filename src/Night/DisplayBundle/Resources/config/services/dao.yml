@@ -1,0 +1,9 @@
+services:
+    night_display.dao.base:
+        class: Night\DisplayBundle\Dao\BaseDao
+        arguments: [ @doctrine.orm.default_entity_manager ]
+        abstract: true
+
+    night_display.dao.project:
+        class: Night\DisplayBundle\Dao\ProjectDao
+        parent: night_display.dao.base

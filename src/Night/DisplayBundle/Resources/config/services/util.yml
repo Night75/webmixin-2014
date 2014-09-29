@@ -1,0 +1,3 @@
+services:
+    night_display.util.image:
+        class: Night\DisplayBundle\Util\ImageUtil

@@ -22,7 +22,10 @@ class NightDisplayExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/services'));
+        $loader->load('dao.yml');
+        $loader->load('manager.yml');
+        $loader->load('twig.yml');
+        $loader->load('util.yml');
     }
 }

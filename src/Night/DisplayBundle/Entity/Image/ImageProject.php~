@@ -1,0 +1,41 @@
+<?php
+
+namespace Night\DisplayBundle\Entity\Image;
+
+use Doctrine\ORM\Mapping as ORM;
+use Night\DisplayBundle\Entity\Image;
+
+/**
+ * ImageProject
+ */
+class ImageProject extends Image
+{
+    /**
+     * @var \Night\DisplayBundle\Entity\Image\Project
+     */
+    private $item;
+
+
+    /**
+     * Set item
+     *
+     * @param \Night\DisplayBundle\Entity\Image\Project $item
+     * @return ImageProject
+     */
+    public function setItem(\Night\DisplayBundle\Entity\Image\Project $item = null)
+    {
+        $this->item = $item;
+
+        return $this;
+    }
+
+    /**
+     * Get item
+     *
+     * @return \Night\DisplayBundle\Entity\Image\Project 
+     */
+    public function getItem()
+    {
+        return $this->item;
+    }
+}

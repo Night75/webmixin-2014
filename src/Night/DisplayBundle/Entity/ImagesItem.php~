@@ -1,0 +1,111 @@
+<?php
+
+namespace Night\DisplayBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ImagesItem
+ */
+class ImagesItem
+{
+    /**
+     * @var string
+     */
+    protected $itemType;
+
+    /**
+     * @var integer
+     */
+    protected $id;
+
+    /**
+     * @var object
+     */
+    protected $item;
+
+    /**
+     * @var integer
+     */
+    protected $image;
+
+    /**
+     * Set itemType
+     *
+     * @param string $itemType
+     * @return ImagesItem
+     */
+    public function setItemType($itemType)
+    {
+        $this->itemType = $itemType;
+
+        return $this;
+    }
+
+    /**
+     * Get itemType
+     *
+     * @return string 
+     */
+    public function getItemType()
+    {
+        return $this->itemType;
+    }
+
+    /**
+     * Set item
+     *
+     * @param object $item
+     * @return ImagesItem
+     */
+    public function setItem($item)
+    {
+        $this->item = $item;
+
+        return $this;
+    }
+
+    /**
+     * Get item
+     *
+     * @return integer 
+     */
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * Set image
+     *
+     * @param integer $image
+     * @return ImagesItem
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return integer 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}

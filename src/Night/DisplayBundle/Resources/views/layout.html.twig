@@ -36,35 +36,51 @@
 </head>
 <body>
 
-    <div id="container" class="st-container">
+    {#
+    # ----- ============= Loading widget
+    #}
+    {#{% include 'NightDisplayBundle:Main:loading.html.twig' %}#}
 
-    {% block body %}
-        {# ----- Loading widget ------ #}
-        {#{% include 'NightDisplayBundle:Page:loading.html.twig' %}#}
+    {#
+    # ----- ============= Main Page
+    #}
+    <div id="page-main" class="hide st-container">
 
-        {# ----- Header ------ #}
-        <header class="st-menu st-effect-11">
-            {{ render_esi(controller('NightDisplayBundle:Layout:header')) }}
-        </header>
+        {% block body %}
 
-        <div id="tools-link">
-            <button id="menu-door" class="st-trigger-effects st-trigger-open" href="#" data-effect="st-effect-11">
-                <img src="{{ asset('bundles/nightdisplay/images/icons/menu9.svg') }}" alt=""/>
-            </button>
-        </div>
+            {# ----- Header ------ #}
+            <header class="st-menu st-effect-11">
+                {{ render_esi(controller('NightDisplayBundle:Layout:header')) }}
+            </header>
 
-        {# ----- Main content ------ #}
-        <div id="main" class="st-pusher">
-            <div class="st-content">
-                {% block content %}
-                {% endblock %}
+            <div id="tools-link">
+                <button id="menu-door" class="st-trigger-effects st-trigger-open" href="#" data-effect="st-effect-11">
+                    <img src="{{ asset('bundles/nightdisplay/images/icons/menu9.svg') }}" alt=""/>
+                </button>
             </div>
-        </div>
 
-        {# ----- Footer ------ #}
-        <footer>
-        </footer>
-    {% endblock %}
+            {# ----- Main content ------ #}
+            <div id="main" class="st-pusher">
+                <div class="st-content">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+
+            {# ----- Footer ------ #}
+            <footer>
+            </footer>
+        {% endblock %}
+    </div>
+
+    {#
+    # ----- ============= Annex Page
+    #}
+    <div id="page-annex">
+        {% block body_annex %}
+            {% render(controller('NightDisplayBundle:Project:show')) %}
+        {% endblock %}
+    </div>
 
     {% block javascripts %}
         <script>
@@ -98,6 +114,5 @@
             });
         </script>
     {% endblock %}
-    </div>
 </body>
 </html>

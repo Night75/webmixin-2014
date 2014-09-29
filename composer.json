@@ -20,7 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "knplabs/knp-menu-bundle": "~2.0",
         "leafo/lessphp": "0.4.*",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*"
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
+        "avalanche123/imagine-bundle": "v2.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

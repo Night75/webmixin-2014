@@ -1,0 +1,133 @@
+@height-project-wrapper: 350px;
+
+section#projects{
+    height: 800px;
+    background: @color-dark-bg;
+
+    h1 {color: @color-light-bg; }
+
+    .wrapper {
+        .display-flex;
+        .flex-flow(row wrap);
+        justify-content: space-around;
+        margin: 60px 0;
+
+        > a {
+            width: 330px;
+            position: relative;
+            text-align: center;
+            border: 7px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 60px;
+
+            img.thumb {
+                opacity: 0.7;
+                vertical-align: middle;
+                width: 100%;
+            }
+
+            figure, svg.bg-1, figcaption {
+                width: 100%;
+                height: 100%;
+            }
+
+            svg.bg-1 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 100%;
+                height: 100%;
+                .transition(all 0.4s);
+                .transform(scale(1.5) translateX(-33%) translateY(-33%));
+
+                ellipse {
+                    fill: rgba(255, 255, 255);
+                    opacity: 0.15;
+                    .transition(all 0.3s);
+                }
+            }
+
+
+            figure {
+                position: relative;
+                margin: 0;
+
+                svg.bg-caption {
+                    position: absolute;
+                    top: -1px; /* fixes rendering issue in FF */
+                    left: 0;
+                    z-index: 2;
+                    width: 100%;
+                    height: 100%;
+
+                    path {
+                        fill: white;
+                    }
+                }
+
+                figcaption {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    overflow: hidden;
+                    z-index: 5;
+
+                    h2, p, button {
+                        font-family: @font-family-title;
+                        margin: 0;
+                        background: white;
+                        text-align: center;
+                        width: 100%;
+                    }
+
+                    h2 {
+                        height: 30px;
+                        line-height: 30px;
+                        z-index: 5;
+                    }
+
+                    p {
+                        height: 25px;
+                        line-height: 20px;
+                        z-index: 1;
+                        opacity: 0;
+                        .transition(all 0.3s);
+                    }
+
+                    button {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 30px;
+                        .transition(all 0.3s);
+                        .transform(translateY(100%));
+                    }
+                }
+            }
+
+
+            &:hover {
+                svg.bg-1 ellipse{
+                    opacity: 0.4;
+                }
+
+                img.thumb {
+                    opacity: 1;
+                }
+
+                figcaption {
+                    button {
+                        .transform(translateY(0));
+                    }
+
+                    p {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+    }
+
+}

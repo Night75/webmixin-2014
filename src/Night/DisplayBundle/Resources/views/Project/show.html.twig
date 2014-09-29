@@ -1,0 +1,33 @@
+<section class="project" class="page">>
+    <div class="container fluid">
+        <div class="controls">
+            
+        </div>
+
+        <div class="content">
+            <h1>KMJ</h1>
+            <div class="picture">
+                {% set image = util_image.getOrderedImages(project)|first %}
+                <img src="{{ image.path }}" alt=""/>
+            </div>
+            <div class="goals">
+                <h2>Goals</h2>
+                <p>{{ project.shortDescription }}</p>
+
+            </div>
+            <div class="technologies">
+                <h2>Technologies</h2>
+                <ul class="language-list">
+                    <li>{{ includeAsset('/uploads/images/languages/php.svg') |raw }}</li>
+                    <li>{{ includeAsset('/uploads/images/languages/html5.svg') |raw }}</li>
+                </ul>
+            </div>
+            <div class="technical-points">
+                <h2>Technical points</h2>
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

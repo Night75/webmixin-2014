@@ -1,0 +1,6 @@
+services:
+    night.display.twig.display:
+        class: Night\DisplayBundle\Twig\DisplayExtension
+        arguments: [%web_dir%]
+        tags:
+            - { name: twig.extension }

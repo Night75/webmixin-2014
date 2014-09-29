@@ -1,0 +1,8 @@
+services:
+    night_display.manager.base:
+        class: Night\DisplayBundle\Manager\BaseManager
+        arguments: [ @night_display.dao.base ]
+        abstract: true
+    night_display.manager.project:
+        class: Night\DisplayBundle\Manager\ProjectManager
+        arguments: [ @night_display.dao.project ]

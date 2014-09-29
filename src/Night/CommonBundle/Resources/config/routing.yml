@@ -1,0 +1,3 @@
+night_common_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: NightCommonBundle:Default:index }

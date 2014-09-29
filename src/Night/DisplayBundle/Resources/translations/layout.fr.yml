@@ -4,3 +4,24 @@ header:
     projects: projets
     about_me: à propos
     contact: contact
+
+about_me:
+    title: A propos de moi
+#    personality:
+#        title: Ma personalité
+#        content:
+#En ce qui concerne mes qualités, je me vois comme quelqu’un de calme et réfléchi, motivé et investi
+#dans tous les projets que j'entreprends. De nature curieuse, j’apprécie les activités riches en enseignements.
+#Quant à mes défauts... je ne préfère pas tout dévoiler en ligne sous les yeux de tous!
+#    passions:
+#        title: Mes passions
+#        content:
+#J’aime me dépenser dans toute sorte de sport, mais je n'ai plus l'occasion de pratiquer tout ce que je souhaite.
+#Mes sports du moment sont le football, roller et natation.
+#Mes autres passions sont les jeux vidéos, les séries TV, la culture japonaise et bien sûr l’informatique
+#    future:
+#        title: Mes reves/ projets futurs
+#        content:
+#Mon rêve est de maîtriser toutes les technologies du web possibles. La route vers l'aboutissement
+#de ce rêve ne prendra sûrement jamais fin, mais cela me va très bien puisque cette route est parsemée
+#de découvertes intéressantes et d'énigmes a résoudre!

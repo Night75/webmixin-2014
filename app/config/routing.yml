@@ -1,3 +1,11 @@
+night_common:
+    resource: "@NightCommonBundle/Resources/config/routing.yml"
+    prefix:   /
+
 night_display:
     resource: "@NightDisplayBundle/Controller"
     type: annotation
+
+_imagine:
+    resource: .
+    type:     imagine

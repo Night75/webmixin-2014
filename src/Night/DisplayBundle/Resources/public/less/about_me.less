@@ -1,0 +1,84 @@
+@color-card-personality: rgb(171, 151, 192);
+@color-card-dreams: rgb(165, 186, 224);
+@color-card-other: rgb(208, 154, 198);
+
+section#about-me {
+    background: @color-light-bg;
+    position: relative;
+    height: 900px;
+    overflow: hidden;
+
+    h1 {
+        margin-bottom: 50px;
+    }
+
+    .card {
+        height: 400px;
+        width: 45%;
+        border: 2px solid white;
+        position: relative;
+
+        h2, p, span, a {color: white; }
+
+        //        &::before {
+        //            content: '';
+        //            position: absolute;
+        //            height: 100%;
+        //            display: inline-block;
+        //            width: 50px;
+        //            background: @color-dark-bg;
+        //        }
+
+        .content {
+            padding-left: 40px;
+            display: inline-block;
+            height: 100%;
+            max-width: 1000px;
+        }
+
+        &.personality, &.dreams {
+            position: absolute;
+            vertical-align: top;
+            height: 500px;
+            width: 55%;
+        }
+
+        &.personality {
+            background: @color-card-personality;
+            .transform(rotate(2deg) translateX(-100%));
+            .transition(all 0.5s);
+            z-index: 10;
+        }
+
+        &.dreams {
+            background: @color-card-dreams;
+            left: 50%;
+            .transform(rotate(-2deg) translateX(100%) translateY(-40px));
+            .transform-origin(0 0);
+            z-index: 5;
+        }
+
+        &.other {
+            position: relative;
+            top: 400px;
+            margin: 0 auto;
+            width: 550px;
+            background: @color-card-other;
+            z-index: 7;
+            .transform(rotate(6deg) translateY(100%));
+        }
+    }
+
+    // Cards Animation
+    .active {
+        &.personality {
+            .transform(rotate(2deg) translateX(0));
+        }
+        &.dreams {
+            .transform(rotate(-2deg) translateX(0));
+        }
+        &.other {
+            .transform(rotate(6deg) translateY(0));
+        }
+    }
+}
