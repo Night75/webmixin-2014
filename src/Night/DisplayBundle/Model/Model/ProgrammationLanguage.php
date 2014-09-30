@@ -22,15 +22,7 @@ class ProgrammationLanguage
     /**
      * @var ImageItem
      */
-    protected $imagesItem;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->imagesItem = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    protected $imageItem;
 
     /**
      * Get id
@@ -65,38 +57,19 @@ class ProgrammationLanguage
         return $this->name;
     }
 
-
     /**
-     * Add imagesItem
-     *
-     * @param ImageItem $imagesItem
-     * @return ProgrammationLanguage
+     * @return ImageItem
      */
-    public function addImageItem(ImageItem $imagesItem)
+    public function getImageItem()
     {
-        $this->imagesItem[] = $imagesItem;
-        $imagesItem->setItem($this);
-
-        return $this;
+        return $this->imageItem;
     }
 
     /**
-     * Remove imagesItem
-     *
-     * @param ImageItem $imagesItem
+     * @param ImageItem $imageItem
      */
-    public function removeImageItem(ImageItem $imagesItem)
+    public function setImageItem($imageItem)
     {
-        $this->imagesItem->removeElement($imagesItem);
-    }
-
-    /**
-     * Get imagesItem
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getImagesItem()
-    {
-        return $this->imagesItem;
+        $this->imageItem = $imageItem;
     }
 }

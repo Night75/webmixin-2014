@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Image
 {
+
+    const DATA_TYPE_SVG = 'svg';
+
     /**
      * @var integer
      */
@@ -18,6 +21,26 @@ class Image
      * @var string
      */
     protected $path;
+
+    /**
+     * @var string
+     */
+    protected $dataType;
+
+    /**
+     * @var string
+     */
+    protected $data;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set path
@@ -43,12 +66,34 @@ class Image
     }
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @return string
      */
-    public function getId()
+    public function getDataType()
     {
-        return $this->id;
+        return $this->dataType;
+    }
+
+    /**
+     * @param string $dataType
+     */
+    public function setDataType($dataType)
+    {
+        $this->dataType = $dataType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param string $data
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
     }
 }
