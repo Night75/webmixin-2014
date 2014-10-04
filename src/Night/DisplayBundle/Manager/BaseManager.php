@@ -28,6 +28,16 @@ abstract class BaseManager
         return $model;
     }
 
+    public function getPrevious($id)
+    {
+        return $this->dao->findPrevious($id);
+    }
+
+    public function getNext($id)
+    {
+        return $this->dao->findNext($id);
+    }
+
     public function getAll()
     {
         return $this->dao->findAll();

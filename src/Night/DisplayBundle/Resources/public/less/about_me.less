@@ -1,84 +1,171 @@
-@color-card-personality: rgb(171, 151, 192);
-@color-card-dreams: rgb(165, 186, 224);
-@color-card-other: rgb(208, 154, 198);
+
+//
+// Styles
+// --------------------------------------------------
+@color-card-passions: rgb(171, 151, 192);
+@color-card-personality: rgb(165, 186, 224);
+@color-card-dreams: rgb(208, 154, 198);
+
+@easing-bezier: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+@rotation-card-left: 3deg;
+@rotation-card-right: -3deg;
+@rotation-card-bottom: 6deg;
 
 section#about-me {
     background: @color-light-bg;
     position: relative;
-    height: 900px;
+    height: 1100px;
     overflow: hidden;
 
     h1 {
         margin-bottom: 50px;
     }
 
-    .card {
-        height: 400px;
-        width: 45%;
-        border: 2px solid white;
+    a.card {
+        display: block;
+        height: 500px;
+        min-width: 700px;
+        border: 7px solid white;
         position: relative;
+        .transition(all 0.8s @easing-bezier);
+        .animation-timing-function(@easing-bezier);
+
+        &.previousActive{z-index: 40 !important;}
+        &.active {z-index: 50 !important; }
+
+        &.card-left {
+            .content {padding: 40px 40px 0 180px; }
+            &:not(.active):hover {
+                .animation(cardLeftFlip 0.8s 1;)
+            }
+        }
+
+        &.card-right {
+            .content { padding: 40px 180px 0 40px;}
+
+            .triangle {
+                .transform(translateX(100%));
+                svg{ .transform(rotate(180deg) translateX(100%)); }
+            }
+
+            &:not(.active):hover {
+                .animation(cardRightFlip 0.8s 1;)
+            }
+        }
+
+        &.card-bottom {
+            .content {padding: 40px 40px 0 180px; }
+
+            &:not(.active):hover {
+                .animation(cardBottomFlip 0.8s 1;)
+            }
+        }
+
+        .triangle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            svg {
+                fill: rgba(0,0,0,0.2);
+                height: 100%;
+                stroke-miterlimit: 10;
+                stroke-width: 7;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke: #FFFFFF;
+            }
+        }
 
         h2, p, span, a {color: white; }
 
-        //        &::before {
-        //            content: '';
-        //            position: absolute;
-        //            height: 100%;
-        //            display: inline-block;
-        //            width: 50px;
-        //            background: @color-dark-bg;
-        //        }
+        h2 { font-size: 35px;}
 
         .content {
-            padding-left: 40px;
             display: inline-block;
             height: 100%;
             max-width: 1000px;
         }
 
-        &.personality, &.dreams {
+        &.passions, &.personality {
             position: absolute;
             vertical-align: top;
-            height: 500px;
-            width: 55%;
         }
 
-        &.personality {
-            background: @color-card-personality;
-            .transform(rotate(2deg) translateX(-100%));
-            .transition(all 0.5s);
+        &.passions {
+            background: @color-card-passions;
+            .transform(rotate(@rotation-card-left) translateX(-100%));
             z-index: 10;
         }
 
-        &.dreams {
-            background: @color-card-dreams;
+        &.personality {
+            .triangle{ .triangle-right; }
+            background: @color-card-personality;
             left: 50%;
-            .transform(rotate(-2deg) translateX(100%) translateY(-40px));
+            .transform(rotate(@rotation-card-right) translateX(100%) translateY(-40px));
             .transform-origin(0 0);
             z-index: 5;
         }
 
-        &.other {
+        &.dreams {
+            background: @color-card-dreams;
             position: relative;
             top: 400px;
             margin: 0 auto;
             width: 550px;
-            background: @color-card-other;
             z-index: 7;
-            .transform(rotate(6deg) translateY(100%));
+            .transform(rotate(@rotation-card-bottom) translateY(100%));
         }
     }
 
     // Cards Animation
-    .active {
+    a.display {
+        &.passions {
+            .transform(rotate(@rotation-card-left) translateX(0));
+        }
         &.personality {
-            .transform(rotate(2deg) translateX(0));
+            .transform(rotate(@rotation-card-right) translateX(0));
         }
         &.dreams {
-            .transform(rotate(-2deg) translateX(0));
-        }
-        &.other {
-            .transform(rotate(6deg) translateY(0));
+            .transform(rotate(@rotation-card-bottom) translateY(-100px));
         }
     }
+}
+
+//
+// Animations
+// --------------------------------------------------
+@card-flip-translate: 60%;
+@keyframes cardLeftFlip {
+    from { .transform(rotate(@rotation-card-left) translateX(0)); }
+    50% { .transform(rotate(@rotation-card-left) translateX(-@card-flip-translate)); }
+    to { .transform(rotate(@rotation-card-left) translateX(0)); z-index: 50; }
+}
+@-webkit-keyframes cardLeftFlip {
+    from { .transform(rotate(@rotation-card-left) translateX(0)); }
+    50% { .transform(rotate(@rotation-card-left) translateX(-@card-flip-translate)); }
+    to { .transform(rotate(@rotation-card-left) translateX(0)); z-index: 50; }
+}
+
+@keyframes cardRightFlip {
+    from { .transform(rotate(@rotation-card-right) translateX(0)); }
+    50% { .transform(rotate(@rotation-card-right) translateX(@card-flip-translate)); }
+    to { .transform(rotate(@rotation-card-right) translateX(0)); z-index: 50;}
+}
+@-webkit-keyframes cardRightFlip {
+    from { .transform(rotate(@rotation-card-right) translateX(0)); }
+    50% { .transform(rotate(@rotation-card-right) translateX(@card-flip-translate)); }
+    to { .transform(rotate(@rotation-card-right) translateX(0)); z-index: 50;}
+}
+
+@keyframes cardBottomFlip {
+    from { .transform(rotate(@rotation-card-bottom) translateY(-100px)); }
+    50% { .transform(rotate(@rotation-card-bottom) translateY(@card-flip-translate)); }
+    to { .transform(rotate(@rotation-card-bottom) translateY(-100px)); z-index: 50;}
+}
+@-webkit-keyframes cardBottomFlip {
+    from { .transform(rotate(@rotation-card-bottom) translateY(-100px)); }
+    50% { .transform(rotate(@rotation-card-bottom) translateY(@card-flip-translate)); }
+    to { .transform(rotate(@rotation-card-bottom) translateY(-100px)); z-index: 50;}
 }

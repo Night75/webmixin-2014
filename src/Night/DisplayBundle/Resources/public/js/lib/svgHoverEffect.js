@@ -16,8 +16,6 @@
 
     function logDebug(message)
     {
-        console.log(debug);
-
         if (debug) {
             console.debug(message);
         }

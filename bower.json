@@ -1,24 +1,25 @@
 {
-  "name": "Webmixin",
-  "version": "0.0.1",
-  "homepage": "https://github.com/Night75/webmixin-2014",
-  "authors": [
-    "Jean-Francois <jfrancois.lai@gmail.com>"
-  ],
-  "description": "Cool personnal website",
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "~2.1.1",
-    "bootstrap": "~3.2.0",
-    "normalize-css": "~3.0.1",
-    "Snap.svg": "~0.3.0",
-    "modernizr": "~2.8.3"
-  }
+    "name": "Webmixin",
+    "version": "0.0.1",
+    "homepage": "https://github.com/Night75/webmixin-2014",
+    "authors": [
+        "Jean-Francois <jfrancois.lai@gmail.com>"
+    ],
+    "description": "Cool personnal website",
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "~2.1.1",
+        "bootstrap": "~3.2.0",
+        "normalize-css": "~3.0.1",
+        "Snap.svg": "~0.3.0",
+        "modernizr": "~2.8.3",
+        "jquery-waypoints": "~2.0.5"
+    }
 }

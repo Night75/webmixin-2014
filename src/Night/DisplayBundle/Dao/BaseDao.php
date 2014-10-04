@@ -36,6 +36,30 @@ abstract class BaseDao
         return $this->getRepository()->find($id);
     }
 
+    public function findPrevious($id)
+    {
+         $qb = $this->getRepository()->createQueryBuilder('e')
+             ->where('e.id < :id')
+                ->setParameter('id', $id)
+             ->orderBy('e.id', 'DESC')
+             ->setMaxResults(1)
+             ;
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    public function findNext($id)
+    {
+        $qb = $this->getRepository()->createQueryBuilder('e')
+            ->where('e.id > :id')
+            ->setParameter('id', $id)
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(1)
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
     /**
      * @return array
      */

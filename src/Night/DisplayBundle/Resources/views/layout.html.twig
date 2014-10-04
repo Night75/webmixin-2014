@@ -21,6 +21,7 @@
     {% block javascriptLibs %}
         <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="/components/Snap.svg/dist/snap.svg-min.js"></script>
+        <script type="text/javascript" src="/components/jquery-waypoints/waypoints.min.js"></script>
 
         {% javascripts
             '@NightDisplayBundle/Resources/public/js/lib/classie.js'
@@ -29,6 +30,7 @@
             '@NightDisplayBundle/Resources/public/js/lib/sideBarEffect.js'
             '@NightDisplayBundle/Resources/public/js/lib/thumbsGrid.js'
             '@NightDisplayBundle/Resources/public/js/lib/svgHoverEffect.js'
+            '@NightDisplayBundle/Resources/public/js/lib/svgPathDraw.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
@@ -39,12 +41,9 @@
     {#
     # ----- ============= Loading widget
     #}
-    {#{% include 'NightDisplayBundle:Main:loading.html.twig' %}#}
+    {% include 'NightDisplayBundle:Main:loading.html.twig' %}
 
-    {#
-    # ----- ============= Main Page
-    #}
-    <div id="page-main" class="hide st-container">
+    <div class="st-container">
 
         {% block body %}
 
@@ -59,12 +58,18 @@
                 </button>
             </div>
 
-            {# ----- Main content ------ #}
-            <div id="main" class="st-pusher">
+            {# ----- Main Page ------ #}
+            <div id="page-main" class="st-pusher">
                 <div class="st-content">
                     {% block content %}
                     {% endblock %}
                 </div>
+            </div>
+
+            {# ----- Annex Page ------ #}
+            <div id="page-annex" class="st-pusher hide">
+                {% block content_annex %}
+                {% endblock %}
             </div>
 
             {# ----- Footer ------ #}
@@ -73,34 +78,42 @@
         {% endblock %}
     </div>
 
-    {#
-    # ----- ============= Annex Page
-    #}
-    <div id="page-annex">
-        {% block body_annex %}
-            {% render(controller('NightDisplayBundle:Project:show')) %}
-        {% endblock %}
-    </div>
+
 
     {% block javascripts %}
+        {% javascripts
+            '@NightDisplayBundle/Resources/public/js/waypoints-events.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
         <script>
             $(document).ready(function() {
 
                 //
                 // ============ Loader
                 // ________________________________________________________________
-
-                /*
-                var loader = new SVGLoader( document.getElementById( 'loading-overlay' ), { speedIn : 400, easingIn : mina.easeinout } );
-
-                function hidePageLoader() {
-                    $('.wrapper-logo, .wrapper-loader').fadeOut(200);
-                    loader.hide();
+                function PageLoading()
+                {
+                    this.loader = new SVGLoader( document.getElementById( 'loading-overlay' ), { speedIn : 400, easingIn : mina.easeinout } );
+                    this.loaderItems = [].slice.call(document.querySelectorAll('#loading-overlay .loader'));
                 }
-                setTimeout(function() {
-                    hidePageLoader();
-                }, 3000);
-                */
+
+                PageLoading.prototype.hide = function () {
+                    this.loaderItems.forEach(function(el) { classie.addClass(el, 'hide')});
+                    this.loader.hide();
+                }
+
+                PageLoading.prototype.show = function () {
+                    this.loaderItems.forEach(function(el) { classie.removeClass(el, 'hide')});
+                    this.loader.show();
+                }
+
+                var pageLoading = new PageLoading();
+                window.pageLoading = pageLoading;
+
+                setTimeout(function() {pageLoading.hide();}, 1000);
+
 
                 //
                 // ============ Skill bar
@@ -111,6 +124,62 @@
                     $barItems.width($(this).data('percent'));
                 });
 
+
+                //
+                // ============ AJAX Page load
+                // ________________________________________________________________
+
+                // Kind of page cache
+                var pagesLoaded = {'main': '', 'annex': ''};
+                window.pagesLoaded = pagesLoaded;
+
+                function loadPage(pageType, url)
+                {
+                    pageLoading.show();
+                    if (pagesLoaded[pageType] == url) {
+                        setTimeout(function() {
+                            showPage(pageType);
+                            pageLoading.hide();
+                        }, 1000)
+                        return;
+                    }
+
+                    $.get(url, {})
+                            .done(function (data) {
+                                var pageToShow = (pageType == 'annex') ? '#page-annex' : '#page-main';
+                                showPage(pageType);
+
+                                $(pageToShow).html(data);
+                                pagesLoaded[pageType] = document.location.pathname;
+                            })
+                            .fail(function () {
+                                console.log('fail');
+                            })
+                            .always(function () {
+                                pageLoading.hide();
+                            })
+                }
+
+                function showPage(pageType)
+                {
+                    var pageToHide = (pageType == 'annex') ? '#page-main:not(".hide")' : '#page-annex:not(".hide")';
+                    var pageToShow = (pageType == 'annex') ? '#page-annex' : '#page-main';
+
+                    $(pageToHide).addClass('hide');
+                    $(pageToShow).removeClass('hide');
+                }
+
+                $('body').on('click', '.ajax', function(event) {
+                    event.preventDefault();
+                    var url = $(this).attr('href');
+                    history.pushState({some: 'thing'}, url, url);
+                    var pageType = $(this).data('page') ? $(this).data('page') : 'annex';
+                    loadPage(pageType, url);
+                });
+
+                window.onpopstate = function(event) {
+                    loadPage(document.location.pathname);
+                }
             });
         </script>
     {% endblock %}

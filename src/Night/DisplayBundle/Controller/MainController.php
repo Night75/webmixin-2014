@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/")
@@ -17,7 +18,7 @@ class MainController extends Controller
      * @Route("/", name="main_index")
      * @Template
      */
-    public function mainAction()
+    public function mainAction(Request $request)
     {
         return $this->render('NightDisplayBundle:Main:main.html.twig');
         return [];

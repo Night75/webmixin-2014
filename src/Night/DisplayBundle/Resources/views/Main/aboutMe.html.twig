@@ -5,24 +5,62 @@
 
         <h1>About me</h1>
 
-        <section class="card personality active">
+        <a class="card card-left passions active">
+            <div class="triangle">
+                {{ includeAsset('/bundles/nightdisplay/images/triangle_right.svg') | raw }}
+            </div>
             <div class="content">
                 <h2>My personality</h2>
                 <p>lorem ipsum</p>
             </div>
-        </section>
+        </a>
 
-        <section class="card dreams active">
-            <div class="content">
-
+        <a class="card card-right personality">
+            <div class="triangle">
+                {{ includeAsset('/bundles/nightdisplay/images/triangle_right.svg') | raw }}
             </div>
-        </section>
-
-        <section class="card other active">
             <div class="content">
-                <h2>Others</h2>
+                <h2>My personality</h2>
+                <p>lorem ipsum</p>
             </div>
-        </section>
+        </a>
+
+        <a class="card card-bottom dreams">
+            <div class="triangle">
+                {{ includeAsset('/bundles/nightdisplay/images/triangle_right.svg') | raw }}
+            </div>
+            <div class="content">
+                <h2>My personality</h2>
+                <p>lorem ipsum</p>
+            </div>
+        </a>
     </div>
 
 </section>
+
+<script>
+    // Cart events
+    $(document).ready(function(){
+
+        function setPreviousActiveCard(event) {
+            if ($('#about-me .card.active').length != 0) {
+                $('#about-me .card.previousActive').removeClass('previousActive');
+            }
+            $('#about-me .card.active').removeClass('active').addClass('previousActive');
+        }
+
+        function setActiveCard(event) {
+            $(event.target).removeClass('previousActive').addClass('active');
+        }
+
+        // Animation start
+        $('#about-me').on('animationstart', '.card:not(".active")', setPreviousActiveCard);
+        $('#about-me').on('MSAnimationStart', '.card:not(".active")', setPreviousActiveCard);
+        $('#about-me').on('webkitAnimationStart', '.card:not(".active")', setPreviousActiveCard);
+
+        // Animation End
+        $('#about-me').on('animationend', '.card:not(".active")', setActiveCard);
+        $('#about-me').on('webkitAnimationEnd', '.card:not(".active")', setActiveCard);
+        $('#about-me').on('MSAnimationEnd', '.card:not(".active")', setActiveCard);
+    });
+</script>

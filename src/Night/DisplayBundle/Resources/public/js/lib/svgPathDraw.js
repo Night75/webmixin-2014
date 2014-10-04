@@ -1,5 +1,5 @@
 /**
- * Svg Line draw
+ * Svg Path draw
  * Some css code will be generated for the element managed by the plugin.
  * To achieve this, a selector for the element will be define, many options
  * are available for this.

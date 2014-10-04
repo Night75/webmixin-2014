@@ -67,7 +67,7 @@
                 classie.addClass( self.el, 'pageload-loading' );
             };
         this._animateSVG( 'in', onEndAnimation );
-        classie.add( this.el, 'show' );
+        classie.add( this.el, 'loading' );
     }
 
     SVGLoader.prototype.hide = function() {
@@ -75,8 +75,8 @@
         classie.removeClass( this.el, 'pageload-loading' );
         this._animateSVG( 'out', function() {
             // reset path
-            self.path.attr( 'd', self.initialPath );
-            classie.removeClass( self.el, 'show' );
+            // self.path.attr( 'd', self.initialPath );
+            classie.removeClass( self.el, 'loading' );
             self.isAnimating = false;
         } );
     }
