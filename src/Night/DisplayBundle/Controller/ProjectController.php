@@ -25,7 +25,7 @@ class ProjectController extends Controller
     {
         $template = $request->isXmlHttpRequest() ?
             'NightDisplayBundle:Project:show_content.html.twig' :
-            'NightDisplayBundle:Project:show_content.html.twig' ;
+            'NightDisplayBundle:Project:show.html.twig' ;
 
         /** @var \Night\DisplayBundle\Manager\ProjectManager $projectManager */
         $projectManager = $this->get('night_display.manager.project');
@@ -37,7 +37,8 @@ class ProjectController extends Controller
         return $this->render($template, [
                 'project' => $project,
                 'previousProject' => $previousProject,
-                'nextProject' => $nextProject
+                'nextProject' => $nextProject,
+                'activePage' => 'annex',
             ]);
     }
 }

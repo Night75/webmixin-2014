@@ -1,35 +1,6 @@
 {% extends 'NightDisplayBundle::layout.html.twig' %}
 
-{% block javascriptLibs %}
-    {{ parent() }}
-
-    {% javascripts
-    '@NightDisplayBundle/Resources/public/js/lib/svgPathDraw.js'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
-
 {% block content %}
-
-    {{ render(controller('NightDisplayBundle:Main:home')) }}
-
-    {{ render(controller('NightDisplayBundle:Main:skills')) }}
-
-    {{ render(controller('NightDisplayBundle:Main:projects')) }}
-
-    {{ render(controller('NightDisplayBundle:Main:aboutMe')) }}
-
-    {{ render(controller('NightDisplayBundle:Main:contact')) }}
-
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        $(document).ready(function() {
-            pagesLoaded['main'] = "{{ app.request.requestUri }}";
-        });
-    </script>
+    {% include 'NightDisplayBundle:Main:main_content.html.twig' %}
 {% endblock %}
 

@@ -31,6 +31,7 @@
             '@NightDisplayBundle/Resources/public/js/lib/thumbsGrid.js'
             '@NightDisplayBundle/Resources/public/js/lib/svgHoverEffect.js'
             '@NightDisplayBundle/Resources/public/js/lib/svgPathDraw.js'
+            '@NightDisplayBundle/Resources/public/js/lib/fullWindowPanel.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
@@ -43,6 +44,7 @@
     #}
     {% include 'NightDisplayBundle:Main:loading.html.twig' %}
 
+    {% set activePage = (activePage is defined) ? activePage : 'main' %}
     <div class="st-container">
 
         {% block body %}
@@ -59,7 +61,7 @@
             </div>
 
             {# ----- Main Page ------ #}
-            <div id="page-main" class="st-pusher">
+            <div id="page-main" class="st-pusher {% if activePage == 'annex' %} hide{% endif %}">
                 <div class="st-content">
                     {% block content %}
                     {% endblock %}
@@ -67,9 +69,11 @@
             </div>
 
             {# ----- Annex Page ------ #}
-            <div id="page-annex" class="st-pusher hide">
+            <div id="page-annex" class="st-pusher{% if activePage == 'main' %} hide{% endif %}">
+                <div class="st-content">
                 {% block content_annex %}
                 {% endblock %}
+                </div>
             </div>
 
             {# ----- Footer ------ #}
@@ -90,29 +94,26 @@
         <script>
             $(document).ready(function() {
 
-                //
-                // ============ Loader
-                // ________________________________________________________________
-                function PageLoading()
+                function PageLoaded()
                 {
                     this.loader = new SVGLoader( document.getElementById( 'loading-overlay' ), { speedIn : 400, easingIn : mina.easeinout } );
                     this.loaderItems = [].slice.call(document.querySelectorAll('#loading-overlay .loader'));
                 }
 
-                PageLoading.prototype.hide = function () {
+                PageLoaded.prototype.hide = function () {
                     this.loaderItems.forEach(function(el) { classie.addClass(el, 'hide')});
                     this.loader.hide();
                 }
 
-                PageLoading.prototype.show = function () {
+                PageLoaded.prototype.show = function () {
                     this.loaderItems.forEach(function(el) { classie.removeClass(el, 'hide')});
                     this.loader.show();
                 }
 
-                var pageLoading = new PageLoading();
-                window.pageLoading = pageLoading;
+                var pageLoader = new PageLoaded();
+                window.pageLoader = pageLoader;
 
-                setTimeout(function() {pageLoading.hide();}, 1000);
+                setTimeout(function() {pageLoader.hide();}, 1000);
 
 
                 //
@@ -129,39 +130,51 @@
                 // ============ AJAX Page load
                 // ________________________________________________________________
 
-                // Kind of page cache
-                var pagesLoaded = {'main': '', 'annex': ''};
-                window.pagesLoaded = pagesLoaded;
-
-                function loadPage(pageType, url)
+                //  App Definition
+                // ____________
+                function App(initialPageType, loader)
                 {
-                    pageLoading.show();
-                    if (pagesLoaded[pageType] == url) {
+                    this.initialPageType = initialPageType;
+                    this.minTimeAnimation = 1000;
+                    // Kind of page cache
+                    this.pagesLoaded = {'main': '', 'annex': ''};
+                    // Expected : object with show and hide methods.
+                    this.loader = loader;
+                    this._initEvents();
+                }
+
+                App.prototype.loadPage = function(pageType, url)
+                {
+                    var self = this;
+                    this.loader.show();
+                    if (this.pagesLoaded[pageType] == url) {
                         setTimeout(function() {
-                            showPage(pageType);
-                            pageLoading.hide();
-                        }, 1000)
+                            self.showPage(pageType);
+                            self.loader.hide();
+                        }, self.minTimeAnimation)
                         return;
                     }
 
+                    var startTime = Date.now();
                     $.get(url, {})
                             .done(function (data) {
                                 var pageToShow = (pageType == 'annex') ? '#page-annex' : '#page-main';
-                                showPage(pageType);
+                                self.showPage(pageType);
 
-                                $(pageToShow).html(data);
-                                pagesLoaded[pageType] = document.location.pathname;
+                                $(pageToShow + ' .st-content').html(data);
+                                self.pagesLoaded[pageType] = document.location.pathname;
                             })
                             .fail(function () {
                                 console.log('fail');
                             })
                             .always(function () {
-                                pageLoading.hide();
+                                var delay = Date.now() - startTime + self.minTimeAnimation;
+                                delay = delay > 0 ? delay : 0;
+                                setTimeout(function() { self.loader.hide();}, delay)
                             })
                 }
 
-                function showPage(pageType)
-                {
+                App.prototype.showPage = function(pageType) {
                     var pageToHide = (pageType == 'annex') ? '#page-main:not(".hide")' : '#page-annex:not(".hide")';
                     var pageToShow = (pageType == 'annex') ? '#page-annex' : '#page-main';
 
@@ -169,17 +182,44 @@
                     $(pageToShow).removeClass('hide');
                 }
 
-                $('body').on('click', '.ajax', function(event) {
-                    event.preventDefault();
-                    var url = $(this).attr('href');
-                    history.pushState({some: 'thing'}, url, url);
-                    var pageType = $(this).data('page') ? $(this).data('page') : 'annex';
-                    loadPage(pageType, url);
-                });
-
-                window.onpopstate = function(event) {
-                    loadPage(document.location.pathname);
+                App.prototype.setPagesLoaded = function(pageType, url) {
+                    this.pagesLoaded[pageType] = url;
                 }
+
+                App.prototype._initEvents = function() {
+                    this._initClickEvent();
+                    this._initPopstateEvent();
+                }
+
+                App.prototype._initClickEvent = function() {
+                    var self = this;
+                    $('body').on('click', '.ajax', function(event) {
+                        event.preventDefault();
+                        var url = $(this).attr('href');
+                        var pageType = $(this).data('page') ? $(this).data('page') : 'annex';
+                        history.pushState({pageType: pageType}, url, url);
+                        self.loadPage(pageType, url);
+                    });
+                }
+
+                App.prototype._initPopstateEvent = function() {
+                    var self = this;
+                    window.onpopstate = function (event){
+                        var pageType = event.state ? event.state.pageType : self.initialPageType;
+                        self.loadPage(pageType, document.location.pathname);
+                    }
+                }
+
+                //  App instance
+                // ____________
+                var pageType = "{{ pageType|default('annex')}}";
+                var app = new App(pageType, pageLoader);
+
+                app.setPagesLoaded(pageType, '{{ app.request.requestUri }}');
+                window.app = app;
+
+
+                var wp = new FullWindowPanel({itemsSelector: ['#home', '#contact']}, true);
             });
         </script>
     {% endblock %}

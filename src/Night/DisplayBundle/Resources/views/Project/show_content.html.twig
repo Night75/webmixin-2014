@@ -13,7 +13,7 @@
                         {{ includeAsset('/bundles/nightdisplay/images/icons/i-arrow-right.svg') |raw }}
                     </a>
                 {% endif %}
-                <a id="close-project" class="bt-control ajax ajax-main" >
+                <a id="close-project" class="bt-control ajax" data-page="main" href="{{ path('main_main')}}" >
                     {{ includeAsset('/bundles/nightdisplay/images/icons/i-cross.svg') |raw }}
                 </a>
                 {% if nextProject %}

@@ -17,7 +17,7 @@
         this._init(options);
     };
 
-    // Default options
+    // Deindiault options
     $.svgPathDraw.defaults = {
         // The class that will be used for launching the animation
         animationClass: 'animate',
@@ -84,9 +84,15 @@
             }
 
             // Unique item identifier
-            $item['id'] = 'svgline-' + k;
+            var $itemEl = this.$el.find($item['cssSelector']);
+            if ($itemEl.attr('id') == '' || $itemEl.attr('id') == undefined) {
+                $item['id'] = 'svgline-' + k + '-' + this._generateId();
+                $itemEl.attr('id', $item['id']);
+                this._logDebug('_configItems', 'Added id on item :', $itemEl);
+            }
+
             // jQuery element
-            $item['item'] = $($item['cssSelector']);
+            $item['item'] = this.$el.find($item['cssSelector']);
             // Stroke length
             $item['length'] = $item['item'][0].getTotalLength();
 
@@ -115,7 +121,7 @@
         }
         cssCode += '</style>';
 
-        this.$el.before(cssCode);
+        this.$el.prepend(cssCode);
         this._logDebug('_dumpAnimationCode', 'Code inserted', cssCode);
     }
 
@@ -131,14 +137,14 @@
         keyFrame += '@-webkit-keyframes ' + $item['id'] + keyFrameProps;
 
         // Item styles
-        var itemStyle = $item['cssSelector'];
+        var itemStyle = '#' + $item['id'];
         itemStyle += '{';
         itemStyle += 'stroke-dasharray: ' + $item['length'] + ';';
         itemStyle += 'stroke-dashoffset: ' + $item['length'] + ';';
         itemStyle += '}';
 
         // Animation
-        var animStyle =  $item['cssSelector'] + '.' + this.options.animationClass;
+        var animStyle = '#' + $item['id'] + '.' + this.options.animationClass;
         animStyle += '{';
         animStyle += 'animation: ' + $item['id'] + ' ' + $item['duration'] + ' ' + $item['easing'] + ' ' + $item['delay'] + ' forwards;';
         animStyle += '-webkit-animation: ' + $item['id'] + ' ' + $item['duration'] + ' ' + $item['easing'] + ' ' + $item['delay'] + ' forwards;';
@@ -157,7 +163,7 @@
         // === Case of restart
         for (var k in this.$items) {
             var $item = this.$items[k]['item'];
-            var itemClass = ($item.attr('class') == undefined) ? '' : itemClass + ' ';
+            var itemClass = ($item.attr('class') == undefined) ? '' : $item.attr('class') + ' ';
             $item.attr('class', itemClass + this.options.animationClass);
         }
     }
@@ -199,6 +205,17 @@
         // Does nothing
     }
 
+    $.svgPathDraw.prototype._generateId = function()
+    {
+        this._logDebug('generateId', 'Start');
+        var uid = Math.floor((Math.random() * 10000)) + Math.floor((Math.random() * 10000)) + Math.floor((Math.random() * 10000));
+        this._logDebug('generateId', 'Generated :', uid);
+        return uid;
+    }
+    function cuniq() {
+
+    }
+
     /**
      * Trigger an event on a element
      *
@@ -222,13 +239,13 @@
         $element.trigger(eventName, data);
     }
 
-	/**
-	 * Log a message the console intended to debug the execution of the script.
-	 *
+    /**
+     * Log a message the console intended to debug the execution of the script.
+     *
      * @param string method Method from where the _logDebug method has been called
      * @param string message Message to log
      * @param mixed  objectToLog Object to log (optionnal)
-	 */
+     */
     $.svgPathDraw.prototype._logDebug = function(method, message, objectToLog)
     {
         // TEMPORARY CODE for debugging on smartphones/tablets
@@ -255,15 +272,15 @@
         }
     }
 
-	/**
-	 * Log an error message the console
-	 *
+    /**
+     * Log an error message the console
+     *
      * @param string method Method from where the _logError method has been called
      * @param string message Message to log
      * @param mixed  objectToLog Object to log (optionnal)
-	 *
+     *
      * @return boolean true if the value exists. false otherwise
-	 */
+     */
     $.svgPathDraw.prototype._logError = function(method, message, objectToLog)
     {
         if (window.console && this.debug) {

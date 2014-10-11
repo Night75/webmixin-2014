@@ -15,13 +15,16 @@ use Symfony\Component\HttpFoundation\Request;
 class MainController extends Controller
 {
     /**
-     * @Route("/", name="main_index")
+     * @Route("/", name="main_main")
      * @Template
      */
     public function mainAction(Request $request)
     {
-        return $this->render('NightDisplayBundle:Main:main.html.twig');
-        return [];
+        $template = $request->isXmlHttpRequest() ?
+            'NightDisplayBundle:Main:main_content.html.twig' :
+            'NightDisplayBundle:Main:main.html.twig' ;
+
+        return $this->render($template, ['pageType' => 'main']);
     }
 
     /**
