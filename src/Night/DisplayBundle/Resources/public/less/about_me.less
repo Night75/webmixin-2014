@@ -1,4 +1,3 @@
-
 //
 // Styles
 // --------------------------------------------------
@@ -13,124 +12,90 @@
 @rotation-card-bottom: 6deg;
 
 section#about-me {
-    background: @color-light-bg;
-    position: relative;
-    height: 1100px;
-    overflow: hidden;
+   background: @color-light-bg;
+   position: relative;
+   overflow: hidden;
 
-    h1 {
-        margin-bottom: 50px;
-    }
+   a.card {
+      display: block;
+      position: relative;
+      .transition(all 0.8s @easing-bezier);
+      .animation-timing-function(@easing-bezier);
 
-    a.card {
-        display: block;
-        height: 500px;
-        min-width: 700px;
-        border: 7px solid white;
-        position: relative;
-        .transition(all 0.8s @easing-bezier);
-        .animation-timing-function(@easing-bezier);
+      &.card-left {
+         &:not(.active):hover {
+            .animation(cardLeftFlip 0.8s 1;)
+         }
+      }
 
-        &.previousActive{z-index: 40 !important;}
-        &.active {z-index: 50 !important; }
-
-        &.card-left {
-            .content {padding: 40px 40px 0 180px; }
-            &:not(.active):hover {
-                .animation(cardLeftFlip 0.8s 1;)
-            }
-        }
-
-        &.card-right {
-            .content { padding: 40px 180px 0 40px;}
-
-            .triangle {
-                .transform(translateX(100%));
-                svg{ .transform(rotate(180deg) translateX(100%)); }
-            }
-
-            &:not(.active):hover {
-                .animation(cardRightFlip 0.8s 1;)
-            }
-        }
-
-        &.card-bottom {
-            .content {padding: 40px 40px 0 180px; }
-
-            &:not(.active):hover {
-                .animation(cardBottomFlip 0.8s 1;)
-            }
-        }
-
-        .triangle {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-
+      &.card-right {
+         .triangle {
+            .transform(translateX(100%));
             svg {
-                fill: rgba(0,0,0,0.2);
-                height: 100%;
-                stroke-miterlimit: 10;
-                stroke-width: 7;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke: #FFFFFF;
+               .transform(rotate(180deg) translateX(100%));
             }
-        }
+         }
 
-        h2, p, span, a {color: white; }
+         &:not(.active):hover {
+            .animation(cardRightFlip 0.8s 1;)
+         }
+      }
 
-        h2 { font-size: 35px;}
+      &.card-bottom {
+         &:not(.active):hover {
+            .animation(cardBottomFlip 0.8s 1;)
+         }
+      }
 
-        .content {
-            display: inline-block;
+      .triangle {
+         position: absolute;
+         width: 100%;
+         height: 100%;
+
+         svg {
+            fill: rgba(0, 0, 0, 0.2);
             height: 100%;
-            max-width: 1000px;
-        }
+            stroke-miterlimit: 10;
+            stroke-width: 7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke: #FFFFFF;
+         }
+      }
 
-        &.passions, &.personality {
-            position: absolute;
-            vertical-align: top;
-        }
+      h2, p, span, a {
+         color: white;
+      }
 
-        &.passions {
-            background: @color-card-passions;
-            .transform(rotate(@rotation-card-left) translateX(-100%));
-            z-index: 10;
-        }
+      h2 {
+         font-size: 35px;
+      }
 
-        &.personality {
-            .triangle{ .triangle-right; }
-            background: @color-card-personality;
-            left: 50%;
-            .transform(rotate(@rotation-card-right) translateX(100%) translateY(-40px));
-            .transform-origin(0 0);
-            z-index: 5;
-        }
+      .content {
+         height: 100%;
+      }
 
-        &.dreams {
-            background: @color-card-dreams;
-            position: relative;
-            top: 400px;
-            margin: 0 auto;
-            width: 550px;
-            z-index: 7;
-            .transform(rotate(@rotation-card-bottom) translateY(100%));
-        }
-    }
+      &.passions {
+         background: @color-card-passions;
+         .transform(rotate(@rotation-card-left) translateX(-100%));
+      }
 
-    // Cards Animation
-    a.display {
-        &.passions {
-            .transform(rotate(@rotation-card-left) translateX(0));
-        }
-        &.personality {
-            .transform(rotate(@rotation-card-right) translateX(0));
-        }
-        &.dreams {
-            .transform(rotate(@rotation-card-bottom) translateY(-100px));
-        }
-    }
+      &.personality {
+         .triangle {
+            .triangle-right;
+         }
+         background: @color-card-personality;
+         .transform(rotate(@rotation-card-right) translateX(100%) translateY(-50px));
+         .transform-origin(0 0);
+      }
+
+      &.dreams {
+         background: @color-card-dreams;
+         position: relative;
+         margin: 0 auto;
+         .transform(rotate(@rotation-card-bottom) translateY(100%));
+      }
+   }
 }
 
 //
@@ -138,34 +103,217 @@ section#about-me {
 // --------------------------------------------------
 @card-flip-translate: 60%;
 @keyframes cardLeftFlip {
-    from { .transform(rotate(@rotation-card-left) translateX(0)); }
-    50% { .transform(rotate(@rotation-card-left) translateX(-@card-flip-translate)); }
-    to { .transform(rotate(@rotation-card-left) translateX(0)); z-index: 50; }
+   from {
+      .transform(rotate(@rotation-card-left) translateX(0));
+   }
+   50% {
+      .transform(rotate(@rotation-card-left) translateX(-@card-flip-translate));
+   }
+   to {
+      .transform(rotate(@rotation-card-left) translateX(0));
+      z-index: 50;
+   }
 }
+
 @-webkit-keyframes cardLeftFlip {
-    from { .transform(rotate(@rotation-card-left) translateX(0)); }
-    50% { .transform(rotate(@rotation-card-left) translateX(-@card-flip-translate)); }
-    to { .transform(rotate(@rotation-card-left) translateX(0)); z-index: 50; }
+   from {
+      .transform(rotate(@rotation-card-left) translateX(0));
+   }
+   50% {
+      .transform(rotate(@rotation-card-left) translateX(-@card-flip-translate));
+   }
+   to {
+      .transform(rotate(@rotation-card-left) translateX(0));
+      z-index: 50;
+   }
 }
 
 @keyframes cardRightFlip {
-    from { .transform(rotate(@rotation-card-right) translateX(0)); }
-    50% { .transform(rotate(@rotation-card-right) translateX(@card-flip-translate)); }
-    to { .transform(rotate(@rotation-card-right) translateX(0)); z-index: 50;}
+   from {
+      .transform(rotate(@rotation-card-right) translateX(0));
+   }
+   50% {
+      .transform(rotate(@rotation-card-right) translateX(@card-flip-translate));
+   }
+   to {
+      .transform(rotate(@rotation-card-right) translateX(0));
+      z-index: 50;
+   }
 }
+
 @-webkit-keyframes cardRightFlip {
-    from { .transform(rotate(@rotation-card-right) translateX(0)); }
-    50% { .transform(rotate(@rotation-card-right) translateX(@card-flip-translate)); }
-    to { .transform(rotate(@rotation-card-right) translateX(0)); z-index: 50;}
+   from {
+      .transform(rotate(@rotation-card-right) translateX(0));
+   }
+   50% {
+      .transform(rotate(@rotation-card-right) translateX(@card-flip-translate));
+   }
+   to {
+      .transform(rotate(@rotation-card-right) translateX(0));
+      z-index: 50;
+   }
 }
 
 @keyframes cardBottomFlip {
-    from { .transform(rotate(@rotation-card-bottom) translateY(-100px)); }
-    50% { .transform(rotate(@rotation-card-bottom) translateY(@card-flip-translate)); }
-    to { .transform(rotate(@rotation-card-bottom) translateY(-100px)); z-index: 50;}
+   from {
+      .transform(rotate(@rotation-card-bottom) translateY(-100px));
+   }
+   50% {
+      .transform(rotate(@rotation-card-bottom) translateY(@card-flip-translate));
+   }
+   to {
+      .transform(rotate(@rotation-card-bottom) translateY(-100px));
+      z-index: 50;
+   }
 }
+
 @-webkit-keyframes cardBottomFlip {
-    from { .transform(rotate(@rotation-card-bottom) translateY(-100px)); }
-    50% { .transform(rotate(@rotation-card-bottom) translateY(@card-flip-translate)); }
-    to { .transform(rotate(@rotation-card-bottom) translateY(-100px)); z-index: 50;}
+   from {
+      .transform(rotate(@rotation-card-bottom) translateY(-100px));
+   }
+   50% {
+      .transform(rotate(@rotation-card-bottom) translateY(@card-flip-translate));
+   }
+   to {
+      .transform(rotate(@rotation-card-bottom) translateY(-100px));
+      z-index: 50;
+   }
+}
+
+// Screen dependant style
+// ______
+
+// Smartphones
+section#about-me {
+   .content {
+      padding: 20px;
+   }
+
+   // Temp
+   a.card {
+      width: 90%;
+      min-height: 500px;
+      border: 3px solid white;
+
+      h2 {
+         font-size: 25px;
+         margin: 0;
+         text-align: center;
+      }
+
+      &.card-left {
+         .transform(rotate(@rotation-card-left) translateX(-100%));
+         z-index: 5;
+      }
+
+      &.card-right {
+         z-index: 10;
+         .transform(rotate(@rotation-card-right) translateX(100%) translateY(-50px));
+      }
+
+      &.card-bottom {
+         z-index: 15;
+         .transform(rotate(@rotation-card-bottom) translateY(100%));
+      }
+
+      &.dreams {
+      }
+
+      .triangle {
+         position: absolute;
+         width: 100%;
+         height: 100%;
+
+         svg {
+            fill: rgba(0, 0, 0, 0.1);
+
+            polygon {
+               stroke-width: 0;
+            }
+         }
+      }
+
+      // Cards Animation
+      &.display {
+         &.card-left {
+            .transform(rotate(@rotation-card-left) translateX(0));
+         }
+         &.card-right {
+            .transform(rotate(@rotation-card-right) translateX(0));
+         }
+         &.card-bottom {
+            .transform(rotate(@rotation-card-bottom) translateY(-100px));
+         }
+      }
+   }
+}
+
+// Smartphone - Landscape / Phablets
+@media screen and (min-width: 480px) {
+
+}
+
+// Tablets
+@media screen and (min-width: 640px) and (min-height: 520px) {
+
+}
+
+// PC Screens
+@media screen and (min-width: 1100px) {
+   section#about-me {
+      height: 900px;
+
+      h1 {
+         margin-bottom: 50px;
+      }
+
+      a.card {
+         display: block;
+         border: 7px solid white;
+         position: relative;
+         width: 680px;
+         .transition(all 0.8s @easing-bezier);
+         .animation-timing-function(@easing-bezier);
+
+         &.previousActive {
+            z-index: 40 !important;
+         }
+         &.active {
+            z-index: 50 !important;
+         }
+
+         &.card-left {
+            .content {
+               padding: 40px 40px 0 180px;
+            }
+         }
+
+         &.card-right {
+            left: 50%;
+            .content {
+               padding: 40px 180px 0 40px;
+            }
+         }
+
+         &.card-bottom {
+            .content {
+               padding: 40px 40px 0 180px;
+            }
+            top: 400px;
+         }
+
+         &.card-left, &.card-right {
+            position: absolute;
+            vertical-align: top;
+         }
+
+         svg {
+            fill: rgba(0, 0, 0, 0.1);
+
+            polygon {
+               stroke-width: 7px;
+            }
+         }
+      }
+   }
 }

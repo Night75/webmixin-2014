@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block head %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     {% block stylesheets %}
-        <link rel="stylesheet" href="/components/normalize-css/normalize.css" />
+        <link rel="stylesheet" href="{{asset('components/normalize-css/normalize.css')}}" />
+        <link rel="stylesheet" href="{{asset('components/opentip/css/opentip.css')}}" />
 
         {% stylesheets
             '@NightDisplayBundle/Resources/public/less/main.less'
@@ -19,12 +21,14 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     {% block javascriptLibs %}
-        <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="/components/Snap.svg/dist/snap.svg-min.js"></script>
-        <script type="text/javascript" src="/components/jquery-waypoints/waypoints.min.js"></script>
+        <script type="text/javascript" src="{{asset('components/jquery/dist/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('components/Snap.svg/dist/snap.svg.js')}}"></script>
+        <script type="text/javascript" src="{{asset('components/jquery-waypoints/waypoints.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('components/opentip/downloads/opentip-jquery.js')}}"></script>
 
         {% javascripts
             '@NightDisplayBundle/Resources/public/js/lib/classie.js'
+            '@NightCommonBundle/Resources/public/js/night-util.js'
             '@NightDisplayBundle/Resources/public/js/lib/modernizr.custom.js'
             '@NightDisplayBundle/Resources/public/js/lib/svgLoader.js'
             '@NightDisplayBundle/Resources/public/js/lib/sideBarEffect.js'
@@ -32,6 +36,9 @@
             '@NightDisplayBundle/Resources/public/js/lib/svgHoverEffect.js'
             '@NightDisplayBundle/Resources/public/js/lib/svgPathDraw.js'
             '@NightDisplayBundle/Resources/public/js/lib/fullWindowPanel.js'
+            '@NightDisplayBundle/Resources/public/js/lib/svgDrawLoader.js'
+            '@NightDisplayBundle/Resources/public/js/lib/svgicons.js'
+            '@NightDisplayBundle/Resources/public/js/svgicons-config.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}

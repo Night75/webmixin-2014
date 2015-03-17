@@ -101,7 +101,5 @@
         }
     }
 
-
     window.FullWindowPanel = FullWindowPanel;
-    console.log('here');
 })();

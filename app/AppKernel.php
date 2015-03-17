@@ -18,9 +18,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Night\CommonBundle\NightCommonBundle(),
             new Night\DisplayBundle\NightDisplayBundle(),
             new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
-            new Night\CommonBundle\NightCommonBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

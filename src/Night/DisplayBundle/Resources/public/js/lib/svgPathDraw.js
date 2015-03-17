@@ -40,6 +40,7 @@
         this._logDebug('_init', 'Start');
         // options
         this.options = $.extend( true, {}, $.svgPathDraw.defaults, options);
+        this._logDebug('_init', 'Options defined: ', this.options);
         // cache some elements and initialize some variables
         this._config();
         // Init events
@@ -89,17 +90,22 @@
                 $item['id'] = 'svgline-' + k + '-' + this._generateId();
                 $itemEl.attr('id', $item['id']);
                 this._logDebug('_configItems', 'Added id on item :', $itemEl);
+            } else {
+                $item['id'] = $itemEl.attr('id');
             }
 
             // jQuery element
             $item['item'] = this.$el.find($item['cssSelector']);
             // Stroke length
-            $item['length'] = $item['item'][0].getTotalLength();
+            $item['length'] = Math.round($item['item'][0].getTotalLength());
 
             // Delay
             if (this.options.chainAnimations) {
                 var itemDelay = $item['delay'];
-                $item['delay'] = previousDelay + parseFloat(itemDelay) + 's';
+
+                $item['delay'] = previousDelay + parseFloat(itemDelay);
+                $item['delay'] = $item['delay'].toFixed(2) + 's';
+
                 previousDelay += parseFloat($item['duration']) + parseFloat(itemDelay);
             }
 
@@ -114,7 +120,7 @@
     {
         this._logDebug('_dumpAnimationCode', 'Start');
 
-        var cssCode = '<style type="text/css" scoped>';
+        var cssCode = '<style type="text/css">';
         for (var k in this.$items) {
             var $item = this.$items[k];
             cssCode += this._getItemCSSAnimCode($item);
@@ -211,9 +217,6 @@
         var uid = Math.floor((Math.random() * 10000)) + Math.floor((Math.random() * 10000)) + Math.floor((Math.random() * 10000));
         this._logDebug('generateId', 'Generated :', uid);
         return uid;
-    }
-    function cuniq() {
-
     }
 
     /**

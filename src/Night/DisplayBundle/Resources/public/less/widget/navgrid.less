@@ -1,9 +1,16 @@
 @import "../lib/navgrid.less";
 
 .tt-grid-wrapper nav a {
-    background: rgb(209, 211, 212);
+   background: rgb(209, 211, 212);
+   margin: 0 15px;
 }
 
 .tt-grid-wrapper nav a.tt-current {
-    box-shadow: 0 0 0 5px rgb(188, 190, 192);
+   box-shadow: 0 0 0 5px rgb(188, 190, 192);
+}
+
+.tt-grid:before,
+.tt-grid:after {
+   display: none;
+   content: '';
 }

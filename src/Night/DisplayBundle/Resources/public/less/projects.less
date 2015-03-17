@@ -1,10 +1,10 @@
+
 //
 // Project list
 // --------------------------------------------------
 @height-project-wrapper: 350px;
 
 section#projects{
-    height: 800px;
     background: @color-dark-bg;
 
     h1 {color: @color-light-bg; }
@@ -16,13 +16,11 @@ section#projects{
         margin: 60px 0;
 
         > a {
-            width: 330px;
             position: relative;
             text-align: center;
             border: 7px solid rgba(255,255,255,0.3);
             border-radius: 10px;
             cursor: pointer;
-            margin-bottom: 60px;
 
             img.thumb {
                 opacity: 0.7;
@@ -140,7 +138,6 @@ section#projects{
 
 section.project {
     background: @color-dark-bg;
-    padding: 30px 0 30px 0;
 
     .container {
         background: rgba(255,255,255,0.2);
@@ -151,15 +148,10 @@ section.project {
 
             .controls {
                 position: absolute;
-                top: 45px;
-                right: 25px;
 
                 .bt-control {
                     cursor: pointer;
                     display: inline-block;
-                    width: 75px;
-                    height: 75px;
-                    margin-left: 20px;
 
                     svg {
                         width: 100%;
@@ -193,26 +185,6 @@ section.project {
 
             p, span, a {
                 font-size: 14px;
-            }
-
-            .picture {
-                float: left;
-                width: 60%;
-
-                img {
-                    border: 7px solid rgba(255, 255, 255, 0.8);
-                    border-radius: 7px;
-                }
-            }
-
-            .goals, .technologies {
-                float: right;
-                width: 40%;
-            }
-
-            .technical-points {
-                padding-top: 30px;
-                clear: both;
             }
 
             ul.language-list {
@@ -251,4 +223,144 @@ section.project {
     90% { .transform(rotate(360deg));}
     95% { .transform(rotate(340deg));}
     to { .transform(rotate(360deg)); }
+}
+
+
+
+// Screen dependant style
+// ______
+
+// Smartphones
+section#projects{
+    .wrapper {
+        > a {
+            width: 165px;
+            margin-bottom: 20px;
+            figure figcaption h2 {
+                font-size: 17px;
+            }
+        }
+    }
+}
+
+section.project {
+    padding: 0;
+    height: auto;
+
+    .container {
+        .content {
+            padding: 65px 15px 15px 15px;
+
+            h1 { margin-bottom: 15px;}
+
+            .controls {
+                top: 0;
+                right: 5px;
+
+                .bt-control {
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+
+            .picture {
+
+                img {
+                    width: 100%;
+                    border: 3px solid rgba(255, 255, 255, 0.8);
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+}
+
+// Smartphone - Landscape / Phablets
+@media screen and (min-width: 480px) {
+    section#projects{
+        .wrapper {
+            > a {
+                width: 165px;
+            }
+        }
+    }
+
+}
+
+// Tablets
+@media screen and (min-width: 640px) and (min-height: 520px) {
+    section#projects{
+        .wrapper {
+            > a {
+                width: 240px;
+                margin-bottom: 30px;
+                figure figcaption h2 {font-size: 21px; }
+            }
+        }
+    }
+
+    section.project {
+        padding: 30px 0 30px 0;
+
+        .container {
+            .content {
+                padding: 40px;
+
+                .controls {
+                    top: 45px;
+                    right: 25px;
+                }
+
+                .picture {
+                    float: left;
+                    width: 60%;
+
+                    img {
+                        border: 7px solid rgba(255, 255, 255, 0.8);
+                        border-radius: 7px;
+                    }
+                }
+
+                .goals {
+                    float: right;
+                    width: 35%;
+                }
+
+                .technologies, .technical-points {
+                    padding-top: 30px;
+                    clear: both;
+                }
+            }
+        }
+    }
+}
+
+// PC Screens
+@media screen and (min-width: 1100px) {
+    section#projects{
+        .wrapper {
+            > a {
+                width: 330px;
+                margin-bottom: 40px;
+            }
+        }
+    }
+
+    section.project {
+        .container {
+            .content {
+
+                .goals, .technologies {
+                    float: right;
+                    clear: none;
+                    width: 35%;
+                }
+
+                .technical-points {
+                    padding-top: 30px;
+                    clear: both;
+                }
+            }
+        }
+    }
 }

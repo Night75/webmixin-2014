@@ -1,0 +1,376 @@
+
+section#contact {
+   background: @color-dark-bg;
+
+   .hide {
+      opacity: 0;
+      display: none !important;
+   }
+   .container {
+      height: 100%;
+      z-index: 10;
+   }
+
+   h1 {
+      color: white;
+      height: 90px;
+      position: absolute;
+      top: 0;
+   }
+
+   .wave {
+      position: absolute;
+      height: 50%;
+      width: 100%;
+      z-index: 1;
+
+      svg {
+         position: absolute;
+         height: 100%;
+
+         path {
+            fill: rgba(255, 255, 255, 0.3);
+         }
+      }
+
+      &.wave-top {
+         top: 0;
+         right: 0;
+         .transform(rotate(180deg));
+
+         svg {
+            top: 0;
+         }
+      }
+
+      &.wave-bottom {
+         bottom: 0;
+         left: 0;
+
+         svg {
+            bottom: 0;
+         }
+      }
+   }
+
+   .wrapper-card {
+      display: table;
+      height: 100%;
+      width: 100%;
+      padding-top: 40px;
+
+      .vcard {
+         display: table-cell;
+         vertical-align: middle;
+         position: relative;
+
+         span, a, div {
+            color: white;
+            .transition(all 0.5s linear);
+         }
+
+         .info {
+            padding: 15px 0;
+            position: relative;
+         }
+
+         .info > * {
+            display: inline-block;
+            vertical-align: middle;
+         }
+
+         .si-icon {
+            width: 30%;
+            max-width: 250px;
+
+            svg {
+               max-height: 80px;
+               max-width: 80px;
+            }
+         }
+
+         .separator {
+            display: block;
+            height: 35px;
+            width: 100%;
+
+            svg {
+               height: 100%;
+            }
+         }
+
+         .separator-top {
+            padding-bottom: 10px;
+         }
+
+         .separator-bottom {
+            padding-top: 10px;
+         }
+
+         svg.text-loader {
+            path {
+               stroke: #FFFFFF;
+               stroke-width: 3;
+               fill: none;
+            }
+         }
+
+         svg path.animated {
+
+         }
+
+         svg#icon-map.animated {
+            .map-path {
+               .animation(animatedMapPath 10s linear 0s infinite);
+            }
+         }
+      }
+   }
+}
+
+@keyframes animatedMapPath {
+   from {
+      stroke-dashoffset: 0;
+   }
+   20% {
+      stroke-dashoffset: 46.1;
+   }
+   to {
+      stroke-dashoffset: 442.5;
+   }
+}
+
+@-webkit-keyframes animatedMapPath {
+   from {
+      stroke-dashoffset: 0;
+   }
+   20% {
+      stroke-dashoffset: 442.5;
+   }
+   to {
+      stroke-dashoffset: 442.5;
+   }
+}
+
+//
+// Icons
+// --------------------------------------------------
+
+// Icons styles
+// ______
+.si-icon svg {
+   .transition(all 0.5s linear);
+}
+
+.si-icon-user {
+   svg {
+      padding-left: 10px;
+   }
+
+   svg path:nth-child(3) {
+      stroke-linecap: round;
+      .transform-origin(34px 48px);
+      .animation(hiThere 4s linear 0s infinite);
+   }
+}
+
+.si-icon-smartphone {
+   svg {
+      padding-left: 5px;
+   }
+}
+
+// KeyFrames
+// ______
+@-webkit-keyframes hiThere {
+   from {
+      -webkit-transform: rotate(115deg);
+   }
+   10% {
+      -webkit-transform: rotate(-10deg);
+   }
+   15% {
+      -webkit-transform: rotate(30deg);
+   }
+   20% {
+      -webkit-transform: rotate(-10deg);
+   }
+   30% {
+      -webkit-transform: rotate(115deg);
+   }
+   to {
+      -webkit-transform: rotate(115deg);
+   }
+}
+
+@keyframes hiThere {
+   from {
+      transform: rotate(115deg);
+   }
+   10% {
+      transform: rotate(-10deg);
+   }
+   15% {
+      transform: rotate(30deg);
+   }
+   20% {
+      transform: rotate(-10deg);
+   }
+   30% {
+      transform: rotate(115deg);
+   }
+   to {
+      transform: rotate(115deg);
+   }
+}
+
+
+// Smartphone
+section#contact {
+   min-height: 480px;
+
+   .wrapper-card {
+      .vcard {
+         padding-top: 45px;
+
+         span, a, div {
+            font-size: 18px;
+         }
+
+         .info {
+            padding: 2px 0;
+         }
+
+
+         .si-icon {
+            width: 23%;
+            padding-left: 5px;
+
+            svg {
+               max-height: 55px;
+               max-width: 55px;
+            }
+         }
+
+         svg.text-loader {
+            height: 55px;
+         }
+      }
+   }
+}
+// Smartphone - Landscape / Phablets
+@media screen and (min-width: 480px) {
+
+   section#contact {
+
+      .wrapper-card {
+         .vcard {
+            padding-top: 55px;
+            padding-left: 15%;
+
+            span, a, div {
+               font-size: 22px;
+            }
+
+            .info {
+               padding: 4px 0;
+            }
+
+            .si-icon {
+               width: 23%;
+               padding-left: 5px;
+
+               svg {
+                  max-height: 62px;
+                  max-width: 62px;
+               }
+            }
+
+            svg.text-loader {
+               height: 62px;
+            }
+         }
+      }
+   }
+}
+
+// Tablets
+@media screen and (min-width: 640px) and (min-height: 520px) {
+
+   section#contact {
+      .wrapper-card {
+         .vcard {
+            padding-left: 15%;
+            padding-top: 80px;
+            padding-bottom: 60px;
+
+            span, a, div {
+               font-size: 30px;
+            }
+
+            .si-icon {
+               width: 30%;
+
+               svg {
+                  max-height: 70px;
+                  max-width: 70px;
+               }
+            }
+
+            svg.text-loader {
+               height: 60px;
+               padding-top: 10px;
+            }
+
+            .separator-bottom {
+               svg {
+                  padding-left: 320px;
+               }
+            }
+         }
+      }
+   }
+}
+
+// PC Screens
+@media screen and (min-width: 1100px) {
+
+   section#contact {
+      .wrapper-card {
+         .vcard {
+            padding-left: 15%;
+            padding-top: 80px;
+
+            span, a, div {
+               font-size: 40px;
+            }
+
+            .info {
+               padding: 15px 0;
+            }
+
+            .si-icon {
+               width: 30%;
+               max-width: 250px;
+
+               svg {
+                  max-height: 80px;
+                  max-width: 80px;
+               }
+            }
+
+            svg.text-loader {
+               height: 70px;
+               padding-top: 10px;
+            }
+
+            .separator-bottom {
+               svg {
+                  padding-left: 600px;
+               }
+            }
+         }
+      }
+   }
+}
+

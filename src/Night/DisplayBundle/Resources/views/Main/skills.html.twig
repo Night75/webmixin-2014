@@ -16,10 +16,6 @@
             </div>
         </section>
 
-        <div class="decoration-middle">
-            <div class="decoration"></div>
-            <div class="decoration"></div>
-        </div>
 
         <section id="frameworks">
 
@@ -32,11 +28,6 @@
             </div>
         </section>
 
-        <div class="decoration-separator">
-            <div class="decoration"></div>
-            <div class="decoration"></div>
-            <div class="decoration"></div>
-        </div>
 
         <section id="others">
             <h2>Others</h2>
@@ -53,25 +44,20 @@
                 </div>
 
                 <div class="certification">
-                    <a href="">
-                        <img src="{{ asset('bundles/nightdisplay/images/certifications/ciw_sda.png')}}" alt="CIW SDA" title="CIW - Site Development Associate" />
-                        <span>CIW - Site Development Associate</span>
-                    </a>
+                    <img src="{{ asset('bundles/nightdisplay/images/certifications/ciw_sda.png')}}" alt="CIW SDA" title="CIW - Site Development Associate" />
+                    <span>CIW - Site Development Associate</span>
                 </div>
                 <div class="certification">
-                    <a href="">
-                        <img src="{{ asset('bundles/nightdisplay/images/certifications/ciw_js.png')}}" alt="CIW JS" title="CIW - Javascript Specialist" />
-                    </a>
+                    <img src="{{ asset('bundles/nightdisplay/images/certifications/ciw_js.png')}}" alt="CIW JS" title="CIW - Javascript Specialist" />
+                    <span>CIW - Site Development Associate</span>
                 </div>
                 <div class="certification">
-                    <a href="">
-                        <img src="{{ asset('bundles/nightdisplay/images/certifications/zend_php53.png')}}" alt="Zend PHP5.5" title="Zend Certified Engineer PHP 5.3" />
-                    </a>
+                    <img src="{{ asset('bundles/nightdisplay/images/certifications/zend_php53.png')}}" alt="Zend PHP5.5" title="Zend Certified Engineer PHP 5.3" />
+                    <span>CIW - Site Development Associate</span>
                 </div>
                 <div class="certification">
-                    <a href="">
-                        <img src="{{ asset('bundles/nightdisplay/images/certifications/oracle_mysql.png')}}" alt="CIW SDA" title="ORACLE - Certified Associate - MySQL" />
-                    </a>
+                    <img src="{{ asset('bundles/nightdisplay/images/certifications/oracle_mysql.png')}}" alt="CIW SDA" title="ORACLE - Certified Associate - MySQL" />
+                    <span>CIW - Site Development Associate</span>
                 </div>
             </div>
         </section>
@@ -93,7 +79,7 @@
         item = '{{ _self.skillitem(skill[1], skill[0]) }}';
         pageItems.push(item);
 
-        {% if loop.index % 7 == 0 %}
+        {% if loop.index % 8 == 0 %}
             items.push(pageItems);
             pageItems = [];
         {% endif %}
@@ -104,6 +90,25 @@
     }
 
     $('.tt-grid').thumbsGrid({items: items }, true);
+
+
+    //
+    // ============ Tooltips
+    // ________________________________________________________________
+    Opentip.styles.tag = {
+        showOn: 'click', // this will disable the default <a /> link behaviour.
+        tipJoint: "bottom", // So the tooltip floats above the link
+        fixed: true,
+        stemLength: 8,
+        target: true,
+        group: "tags" // Ensures that only one tag Opentip is visible
+    };
+
+    // Now create an Opentip for each tag element
+    var certifications = [].slice.call(document.querySelectorAll('#certifications .certification'));
+    certifications.forEach(function(el) {
+        new Opentip(el, 'content here', {style: 'tag'});
+    })
 
 </script>
 
