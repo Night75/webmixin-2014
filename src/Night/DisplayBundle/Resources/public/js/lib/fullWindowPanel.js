@@ -63,6 +63,7 @@
             var height = this.getAppropriateHeight(this.items[k]);
             this.items[k].style.height = height;
         }
+        $(this).trigger('FullWindowPanel.resized');
     }
 
     FullWindowPanel.prototype.getAppropriateHeight = function(element)

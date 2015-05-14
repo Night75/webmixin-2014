@@ -225,12 +225,13 @@ section#contact {
 }
 
 
-// Smartphone
+// Standard
 section#contact {
-   min-height: 480px;
+   min-height: 740px;
 
    .wrapper-card {
       .vcard {
+         padding-left: 15%;
          padding-top: 45px;
 
          span, a, div {
@@ -259,9 +260,11 @@ section#contact {
    }
 }
 // Smartphone - Landscape / Phablets
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 480px) and (max-width: 640px)  {
 
+   // Smartphone
    section#contact {
+      min-height: 480px;
 
       .wrapper-card {
          .vcard {
@@ -295,9 +298,11 @@ section#contact {
 }
 
 // Tablets
-@media screen and (min-width: 640px) and (min-height: 520px) {
+@media screen and (min-width: 640px) and (max-width: 1100px) and (min-height: 520px) {
 
    section#contact {
+      min-height: 620px;
+
       .wrapper-card {
          .vcard {
             padding-left: 15%;
@@ -338,7 +343,6 @@ section#contact {
    section#contact {
       .wrapper-card {
          .vcard {
-            padding-left: 15%;
             padding-top: 80px;
 
             span, a, div {

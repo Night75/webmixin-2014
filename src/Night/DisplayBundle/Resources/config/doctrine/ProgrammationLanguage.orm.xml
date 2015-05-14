@@ -11,7 +11,10 @@
         </id>
         <field name="name" type="string" column="name" length="45" nullable="false"/>
 
-        <one-to-one field="imageItem" target-entity="Night\DisplayBundle\Entity\Image\ImageProgrammationLanguage" mapped-by="item" />
+        <one-to-one field="imageItem" target-entity="Night\DisplayBundle\Entity\Image\ImageProgrammationLanguage" inversed-by="item">
+            <cascade><cascade-all /></cascade>
+            <join-column name="image_id" referenced-column-name="id" />
+        </one-to-one>
 
     </entity>
 </doctrine-mapping>

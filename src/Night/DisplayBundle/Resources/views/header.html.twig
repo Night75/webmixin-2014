@@ -1,37 +1,35 @@
-{% trans_default_domain "layout" %}
-
-<nav>
+<nav id="main-menu">
     <div class="logo-wrapper">
         <img class="logo" src="{{ asset('bundles/nightdisplay/images/logo_full.svg')}}" alt="webmixingshapes" />
     </div>
 
     <ul>
         <li class="active">
-            <a href="">
+            <a href="#home" data-offset="0">
                 <span class="y-con y-home"></span>
                 <span class="label">{{ 'header.home'|trans }}</span>
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="#skills" data-offset="495">
                 <span class="y-con y-star"></span>
                 <span class="label">{{ 'header.skills'|trans }}</span>
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="#projects">
                 <span class="y-con y-code"></span>
                 <span class="label">{{ 'header.projects'|trans }}</span>
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="#about-me">
                 <span class="y-con y-nice-face"></span>
                 <span class="label">{{ 'header.about_me'|trans }}</span>
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="#contact">
                 <span class="y-con y-phone-oldschool"></span>
                 <span class="label">{{ 'header.contact'|trans }}</span>
             </a>

@@ -8,6 +8,6 @@ use Night\DisplayBundle\Model\Model\ImageItem as BaseImageItem;
 /**
  * Project
  */
-class ImageItem extends BaseImageItem
+abstract class ImageItem extends BaseImageItem
 {
 }

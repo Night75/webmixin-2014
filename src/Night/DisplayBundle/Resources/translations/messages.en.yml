@@ -1,0 +1,9 @@
+header:
+    home: home
+    skills: skills
+    projects: projects
+    about_me: about me
+    contact: contact
+
+about_me:
+    title: About me

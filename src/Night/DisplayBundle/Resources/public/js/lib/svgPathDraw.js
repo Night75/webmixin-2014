@@ -97,7 +97,7 @@
             // jQuery element
             $item['item'] = this.$el.find($item['cssSelector']);
             // Stroke length
-            $item['length'] = Math.round($item['item'][0].getTotalLength());
+            $item['length'] = Math.ceil($item['item'][0].getTotalLength());
 
             // Delay
             if (this.options.chainAnimations) {
@@ -110,6 +110,7 @@
             }
 
             this.$items.push($item);
+
             this._logDebug('_configItems', 'Item added :', $item);
         }
 

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ImagesItem
  */
-class ImageItem
+abstract class ImageItem
 {
     const TYPE_PROJECT = 'project';
 

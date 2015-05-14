@@ -60,10 +60,6 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
-knp_menu:
-    twig:
-        template: NightDisplayBundle::menu.html.twig
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"

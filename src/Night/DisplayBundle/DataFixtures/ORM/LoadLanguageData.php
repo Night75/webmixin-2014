@@ -26,17 +26,15 @@ class LoadLanguageData extends AbstractFixture implements OrderedFixtureInterfac
         $this->em = $em;
 
         $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
-        $this->loadBasic('php', 'img-php');
+        $this->loadBasic('c-sharp', 'img-c-sharp');
+        $this->loadBasic('css', 'img-css');
+        $this->loadBasic('html', 'img-html');
+        $this->loadBasic('html5', 'img-html5');
+        $this->loadBasic('javascript', 'img-javascript');
+        $this->loadBasic('jquery', 'img-jquery');
+        $this->loadBasic('less', 'img-less');
+        $this->loadBasic('nodejs', 'img-nodejs');
+        $this->loadBasic('symfony', 'img-symfony');
     }
 
     protected function loadBasic($name, $imgReference)

@@ -18,7 +18,6 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "knplabs/knp-menu-bundle": "~2.0",
         "leafo/lessphp": "0.4.*",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "avalanche123/imagine-bundle": "v2.1"

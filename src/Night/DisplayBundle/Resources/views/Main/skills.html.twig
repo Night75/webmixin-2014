@@ -43,22 +43,26 @@
                     <a href=""><span>Download my resume</span></a>
                 </div>
 
-                <div class="certification">
+                <figure class="certification">
+                    <i class="bg-square45"></i>
                     <img src="{{ asset('bundles/nightdisplay/images/certifications/ciw_sda.png')}}" alt="CIW SDA" title="CIW - Site Development Associate" />
-                    <span>CIW - Site Development Associate</span>
-                </div>
-                <div class="certification">
+                    <figcaption>CIW - Site Development Associate</figcaption>
+                </figure>
+                <figure class="certification">
+                    <i class="bg-square45"></i>
                     <img src="{{ asset('bundles/nightdisplay/images/certifications/ciw_js.png')}}" alt="CIW JS" title="CIW - Javascript Specialist" />
-                    <span>CIW - Site Development Associate</span>
-                </div>
-                <div class="certification">
+                    <figcaption>CIW - Site Development Associate</figcaption>
+                </figure>
+                <figure class="certification">
+                    <i class="bg-square45"></i>
                     <img src="{{ asset('bundles/nightdisplay/images/certifications/zend_php53.png')}}" alt="Zend PHP5.5" title="Zend Certified Engineer PHP 5.3" />
-                    <span>CIW - Site Development Associate</span>
-                </div>
-                <div class="certification">
+                    <figcaption>CIW - Site Development Associate</figcaption>
+                </figure>
+                <figure class="certification">
+                    <i class="bg-square45"></i>
                     <img src="{{ asset('bundles/nightdisplay/images/certifications/oracle_mysql.png')}}" alt="CIW SDA" title="ORACLE - Certified Associate - MySQL" />
-                    <span>CIW - Site Development Associate</span>
-                </div>
+                    <figcaption>CIW - Site Development Associate</figcaption>
+                </figure>
             </div>
         </section>
 
@@ -107,7 +111,8 @@
     // Now create an Opentip for each tag element
     var certifications = [].slice.call(document.querySelectorAll('#certifications .certification'));
     certifications.forEach(function(el) {
-        new Opentip(el, 'content here', {style: 'tag'});
+        var text = el.querySelector('figcaption').innerText;
+        new Opentip(el, text, {style: 'tag'});
     })
 
 </script>

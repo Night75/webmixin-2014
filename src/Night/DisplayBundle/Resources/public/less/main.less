@@ -10,17 +10,12 @@
 @import "widget/buttons.less";
 // Common/General styles
 @import "common.less";
+@import "header.less";
 @import "home.less";
 @import "projects.less";
 @import "skills.less";
 @import "about_me.less";
 @import "contact.less";
-
-.hide {
-   &#page-main, &#page-annex {
-      display: none !important;
-   }
-}
 
 #page-index {
    height: 100%;
@@ -28,31 +23,6 @@
 
 section.page {
    padding: 5px;
-}
-
-section#skills {
-   background: @color-light-bg;
-
-   .container {
-      .display-flex;
-      .flex-flow(row wrap);
-
-      > * {
-         .flex(1 100%);
-      }
-   }
-
-   #other-skills {
-      margin-top: 35px;
-      h2 { text-align: center; }
-
-      ul {
-         .display-flex;
-         .flex-flow(row wrap);
-
-         justify-content: space-around;
-      }
-   }
 }
 
 @media all and (min-width: 1100px) {
@@ -64,58 +34,11 @@ section#skills {
    }
 }
 
-@media all and (min-width: 1100px) {
+// Menu opened
+.st-container.st-menu-open {
 
-   section#skills {
-
-      #languages, #frameworks {
-         .flex(20 400px);
-      }
-
-      #frameworks {
-         .transform(translateX(7%));
-      }
-
-      .decoration-middle {
-         background: url('@{path-images}abstract_checkboard.svg') no-repeat center top;
-         .transform(translateY(-120px));
-         .flex(5 250px);
-      }
-
-      .decoration-separator {
-         background: url('@{path-images}abstract_checkboard_large2.svg') no-repeat center center;
-         height: 200px;
-         background-size: auto 180px;
-      }
-   }
-}
-
-section#others {
-   margin: 25px 0 100px 0;
-   h2 {text-align: center;}
-
-   #certifications {
-      margin-top: 90px;
-      text-align: center;
-      .display-flex;
-      flex-flow: row wrap;
-      align-items: center;
-      justify-content: center;
-      margin-right: -70px;
-
-      .download-resume {
-         .bt-square45(200px, rgb(87, 89, 91));
-         overflow: hidden;
-         .d-fill;
-         margin-right: 70px;
-         span {font-size: 25px; font-family: @font-family-title; }
-      }
-
-      .certification {
-         margin-right: 50px;
-         .bt-square45(100px, rgb(218, 219, 220));
-
-         img {height: 75px; transform: rotate(-45deg);}
-      }
+   .bg-rocket {
+      -webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
+      animation-play-state: paused;
    }
 }
