@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class ImageItem
 {
     const TYPE_PROJECT = 'project';
+    const TYPE_PROGRAMMATION_LANGUAGE = 'prog_language';
 
     /**
      * @var integer

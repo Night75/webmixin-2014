@@ -11,4 +11,14 @@ use Night\DisplayBundle\Model\Model\Project as BaseProject;
  */
 class Project extends BaseProject
 {
+    /**
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    protected $locale;
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
 }

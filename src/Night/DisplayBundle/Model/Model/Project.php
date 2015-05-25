@@ -38,6 +38,11 @@ class Project
     protected $imagesItem;
 
     /**
+     * @var CategoryItem
+     */
+    protected $categoryItem;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -59,6 +64,7 @@ class Project
      * Set title
      *
      * @param string $title
+     *
      * @return Project
      */
     public function setTitle($title)
@@ -71,7 +77,7 @@ class Project
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -82,6 +88,7 @@ class Project
      * Set description
      *
      * @param string $description
+     *
      * @return Project
      */
     public function setDescription($description)
@@ -94,7 +101,7 @@ class Project
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -105,6 +112,7 @@ class Project
      * Set imagesItem
      *
      * @param ImageItem $imagesItem
+     *
      * @return Project
      */
     public function setImagesItem(ImageItem $imagesItem = null)
@@ -128,6 +136,7 @@ class Project
      * Add imagesItem
      *
      * @param ImageItem $imagesItem
+     *
      * @return Project
      */
     public function addImageItem(ImageItem $imagesItem)
@@ -152,6 +161,7 @@ class Project
      * Set shortDescription
      *
      * @param string $shortDescription
+     *
      * @return Project
      */
     public function setShortDescription($shortDescription)
@@ -164,10 +174,26 @@ class Project
     /**
      * Get shortDescription
      *
-     * @return string 
+     * @return string
      */
     public function getShortDescription()
     {
         return $this->shortDescription;
+    }
+
+    /**
+     * @return CategoryItem
+     */
+    public function getCategoryItem()
+    {
+        return $this->categoryItem;
+    }
+
+    /**
+     * @param CategoryItem $categoryItem
+     */
+    public function setCategoryItem(CategoryItem $categoryItem)
+    {
+        $this->categoryItem = $categoryItem;
     }
 }

@@ -8,6 +8,6 @@ use Night\DisplayBundle\Model\Model\CategoryItem as BaseCategoryItem;
 /**
  * Project
  */
-class CategoryItem extends BaseCategoryItem
+abstract class CategoryItem extends BaseCategoryItem
 {
 }

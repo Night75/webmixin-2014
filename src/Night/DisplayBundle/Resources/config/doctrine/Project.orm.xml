@@ -6,15 +6,31 @@
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
-        <field name="title" type="string" column="title" length="255" nullable="false"/>
-        <field name="shortDescription" type="text" column="short_description" nullable="true"/>
-        <field name="description" type="text" column="description" nullable="true"/>
+
+        <field name="title" type="string" column="title" length="255" nullable="false">
+            <!--<gedmo:translatable/>-->
+        </field>
+        <field name="shortDescription" type="text" column="short_description" nullable="true">
+            <!--<gedmo:translatable/>-->
+        </field>
+        <field name="description" type="text" column="description" nullable="true">
+            <!--<gedmo:translatable/>-->
+        </field>
+
+        <!--<gedmo:translation entity="Gedmo\Translatable\Entity\Translation" locale="locale"/>-->
 
         <one-to-many field="imagesItem" target-entity="Night\DisplayBundle\Entity\Image\ImageProject" mapped-by="item" fetch="EAGER" >
             <cascade>
                 <cascade-persist/>
             </cascade>
         </one-to-many>
+
+        <one-to-one field="categoryItem" target-entity="Night\DisplayBundle\Entity\Category\CategoryProject">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-column name="item_id" referenced-column-name="id" />
+        </one-to-one>
 
     </entity>
 </doctrine-mapping>
