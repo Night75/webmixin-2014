@@ -27,6 +27,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $this->loadBasic('vitrine', 'project-vitrine');
         $this->loadBasic('extranet', 'project-extranet');
         $this->loadBasic('e-commerce', 'project-e-commerce');
+        $this->loadBasic('software', 'project-software');
         $this->loadBasic('intranet', 'project-intranet');
     }
 

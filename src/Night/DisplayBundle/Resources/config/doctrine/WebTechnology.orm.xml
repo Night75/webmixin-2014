@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="Night\DisplayBundle\Entity\ProgrammationLanguage" table="programmation_languages">
+    <entity name="Night\DisplayBundle\Entity\WebTechnology" table="webtechnologies">
         <unique-constraints>
             <unique-constraint name="name" columns="name"/>
         </unique-constraints>
@@ -11,10 +11,9 @@
         </id>
         <field name="name" type="string" column="name" length="45" nullable="false"/>
 
-        <one-to-one field="imageItem" target-entity="Night\DisplayBundle\Entity\Image\ImageProgrammationLanguage" inversed-by="item">
+        <one-to-one field="imageItem" target-entity="Night\DisplayBundle\Entity\Image\ImageWebTechnology">
             <cascade><cascade-all /></cascade>
             <join-column name="image_id" referenced-column-name="id" />
         </one-to-one>
-
     </entity>
 </doctrine-mapping>

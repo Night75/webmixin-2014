@@ -4,6 +4,7 @@ namespace Night\DisplayBundle\Manager;
 
 use Doctrine\ORM\EntityNotFoundException;
 use Night\DisplayBundle\Dao\BaseDao;
+use Night\DisplayBundle\Entity\Project;
 use Night\DisplayBundle\Exception\ModelNotFoundException;
 
 abstract class BaseManager
@@ -16,6 +17,13 @@ abstract class BaseManager
         $this->dao = $dao;
     }
 
+    /**
+     * @param $id
+     *
+     * @return Project
+     *
+     * @throws ModelNotFoundException
+     */
     public function get($id)
     {
         $model = $this->dao->find($id);

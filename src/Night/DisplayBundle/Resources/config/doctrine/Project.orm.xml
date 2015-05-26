@@ -16,6 +16,9 @@
         <field name="description" type="text" column="description" nullable="true">
             <!--<gedmo:translatable/>-->
         </field>
+        <field name="technicalPoints" type="text" column="technical_points" nullable="true">
+            <!--<gedmo:translatable/>-->
+        </field>
 
         <!--<gedmo:translation entity="Gedmo\Translatable\Entity\Translation" locale="locale"/>-->
 
@@ -29,8 +32,19 @@
             <cascade>
                 <cascade-persist/>
             </cascade>
-            <join-column name="item_id" referenced-column-name="id" />
+            <join-column name="category_id" referenced-column-name="id" />
         </one-to-one>
 
+
+        <many-to-many field="webTechnologies" target-entity="WebTechnology">
+            <join-table name="project_webtechnologies">
+                <join-columns>
+                    <join-column name="project_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="webtechnology_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
     </entity>
 </doctrine-mapping>

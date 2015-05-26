@@ -7,6 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ImageProject
  */
-class ImageProgrammationLanguage extends ImageItem
+class ImageWebTechnology extends ImageItem
 {
 }

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class ImageItem
 {
     const TYPE_PROJECT = 'project';
-    const TYPE_PROGRAMMATION_LANGUAGE = 'prog_language';
+    const TYPE_WEBTECHNOLOGY = 'webtehnology';
 
     /**
      * @var integer
@@ -51,7 +51,8 @@ abstract class ImageItem
      * Set itemType
      *
      * @param string $itemType
-     * @return ImagesItem
+     *
+     * @return string
      */
     public function setItemType($itemType)
     {

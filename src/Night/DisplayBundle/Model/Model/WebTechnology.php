@@ -5,9 +5,9 @@ namespace Night\DisplayBundle\Model\Model;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProgrammationLanguage
+ * WebTechnology
  */
-class ProgrammationLanguage
+class WebTechnology
 {
     /**
      * @var integer
@@ -38,7 +38,7 @@ class ProgrammationLanguage
      * Set name
      *
      * @param string $name
-     * @return ProgrammationLanguage
+     * @return WebTechnology
      */
     public function setName($name)
     {

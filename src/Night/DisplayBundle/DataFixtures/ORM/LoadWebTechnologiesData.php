@@ -5,13 +5,13 @@ namespace Night\DisplayBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Night\DisplayBundle\Entity\Image;
-use Night\DisplayBundle\Entity\ProgrammationLanguage;
+use Night\DisplayBundle\Entity\WebTechnology;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadLanguageData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadWebTechonologiesData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /** @var ObjectManager */
     protected $em;
@@ -39,10 +39,12 @@ class LoadLanguageData extends AbstractFixture implements OrderedFixtureInterfac
 
     protected function loadBasic($name, $imgReference)
     {
-        $language = new ProgrammationLanguage();
+        $language = new WebTechnology();
         $language->setName($name);
 
-        $imgItem = new Image\ImageProgrammationLanguage();
+        $this->addReference($name, $language);
+
+        $imgItem = new Image\ImageWebTechnology();
         $imgItem->setImage($this->getReference($imgReference));
         $imgItem->setOrder(1);
 

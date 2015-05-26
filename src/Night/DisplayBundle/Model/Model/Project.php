@@ -33,6 +33,11 @@ class Project
     protected $shortDescription;
 
     /**
+     * @var string
+     */
+    protected $technicalPoints;
+
+    /**
      * @var ImageItem
      */
     protected $imagesItem;
@@ -43,11 +48,17 @@ class Project
     protected $categoryItem;
 
     /**
+     * @var WebTechnology[]
+     */
+    protected $webTechnologies;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->imagesItem = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->webTechnologies = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -106,6 +117,22 @@ class Project
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTechnicalPoints()
+    {
+        return $this->technicalPoints;
+    }
+
+    /**
+     * @param string $technicalPoints
+     */
+    public function setTechnicalPoints($technicalPoints)
+    {
+        $this->technicalPoints = $technicalPoints;
     }
 
     /**
@@ -195,5 +222,54 @@ class Project
     public function setCategoryItem(CategoryItem $categoryItem)
     {
         $this->categoryItem = $categoryItem;
+    }
+
+
+    /**
+     * Set webTechnology
+     *
+     * @param WebTechology $webTechnology
+     *
+     * @return Project
+     */
+    public function setWebTechologies($webTechnologies)
+    {
+        $this->webTechnologies = $webTechnologies;
+
+        return $this;
+    }
+
+    /**
+     * Get webTechnology
+     *
+     * @return WebTechnology
+     */
+    public function getWebTechnologies()
+    {
+        return $this->webTechnologies;
+    }
+
+    /**
+     * Add webTechnology
+     *
+     * @param WebTechnology $webTechnology
+     *
+     * @return Project
+     */
+    public function addWebTechnology(WebTechnology $webTechnology)
+    {
+        $this->webTechnologies[] = $webTechnology;
+
+        return $this;
+    }
+
+    /**
+     * Remove webTechnologies
+     *
+     * @param WebTechology $webTechnologies
+     */
+    public function removeWebTechology(WebTechology $webTechnologies)
+    {
+        $this->webTechnologies->removeElement($webTechnologies);
     }
 }

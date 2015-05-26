@@ -20,7 +20,7 @@
         <discriminator-column name="item_type" type="string" length="50"  />
         <discriminator-map>
             <discriminator-mapping value="project" class="Night\DisplayBundle\Entity\Image\ImageProject" />
-            <discriminator-mapping value="prog_language" class="Night\DisplayBundle\Entity\Image\ImageProgrammationLanguage" />
+            <discriminator-mapping value="webtechnology" class="Night\DisplayBundle\Entity\Image\ImageWebTechnology" />
         </discriminator-map>
 
     </entity>

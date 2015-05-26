@@ -28,22 +28,23 @@ class LoadImageData extends AbstractFixture implements OrderedFixtureInterface, 
         $this->imgRootDir = $this->container->getParameter('web_dir');
 
         // Languages Images
-        $this->loadSvg('/uploads/images/languages/php.svg', 'img-php');
-        $this->loadSvg('/uploads/images/languages/c-sharp.svg', 'img-c-sharp');
-        $this->loadSvg('/uploads/images/languages/css.svg', 'img-css');
-        $this->loadSvg('/uploads/images/languages/html.svg', 'img-html');
-        $this->loadSvg('/uploads/images/languages/html5.svg', 'img-html5');
-        $this->loadSvg('/uploads/images/languages/javascript.svg', 'img-javascript');
-        $this->loadSvg('/uploads/images/languages/jquery.svg', 'img-jquery');
-        $this->loadSvg('/uploads/images/languages/less.svg', 'img-less');
-        $this->loadSvg('/uploads/images/languages/nodejs.svg', 'img-nodejs');
-        $this->loadSvg('/uploads/images/languages/symfony.svg', 'img-symfony');
+        $this->loadSvg('/uploads/images/languages/php.svg', 'PHP', 'img-php');
+        $this->loadSvg('/uploads/images/languages/c-sharp.svg', 'C#', 'img-c-sharp');
+        $this->loadSvg('/uploads/images/languages/css.svg', 'CSS', 'img-css');
+        $this->loadSvg('/uploads/images/languages/html.svg', 'XHTML', 'img-html');
+        $this->loadSvg('/uploads/images/languages/html5.svg', 'HTML 5','img-html5');
+        $this->loadSvg('/uploads/images/languages/javascript.svg', 'Javascript','img-javascript');
+        $this->loadSvg('/uploads/images/languages/jquery.svg', 'jQuery','img-jquery');
+        $this->loadSvg('/uploads/images/languages/less.svg', 'LESS','img-less');
+        $this->loadSvg('/uploads/images/languages/nodejs.svg', 'NodeJS','img-nodejs');
+        $this->loadSvg('/uploads/images/languages/symfony.svg', 'Symfony','img-symfony');
     }
 
-    protected function loadSvg($path, $reference)
+    protected function loadSvg($path, $title, $reference)
     {
         $image = new Image();
         $image->setPath($path);
+        $image->setTitle($title);
         $image->setDataType(Image::DATA_TYPE_SVG);
         $image->setData(file_get_contents($this->imgRootDir .$path));
         $this->addReference($reference, $image);

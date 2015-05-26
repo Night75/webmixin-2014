@@ -34,6 +34,9 @@ class ProjectController extends Controller
         $previousProject = $projectManager->getPrevious($id);
         $nextProject = $projectManager->getNext($id);
 
+        $tech = $project->getWebTechnologies();
+        $c = count($tech);
+
         return $this->render($template, [
                 'project' => $project,
                 'previousProject' => $previousProject,

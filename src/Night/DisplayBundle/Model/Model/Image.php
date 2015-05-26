@@ -20,6 +20,11 @@ class Image
     /**
      * @var string
      */
+    protected $title;
+
+    /**
+     * @var string
+     */
     protected $path;
 
     /**
@@ -40,6 +45,22 @@ class Image
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**
